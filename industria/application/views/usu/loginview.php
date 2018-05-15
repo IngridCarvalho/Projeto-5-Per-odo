@@ -10,20 +10,20 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?= base_url(); ?>industria/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?= base_url(); ?>industria/dist/css/signin.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/signin.css" rel="stylesheet">
   </head>
 
   <body class="text-center">
-    <form class="form-signin" action="<?= base_url('acesso/logar') ?>" method="post">
+    <form class="form-signin" action="<?= base_url('usu/acesso/logar') ?>" method="post">
       <?php if (isset($alert)) { ?>
-        <div class="alert alert-
-          <?php $a = explode('-', isset($alert) ? $alert : '');
+        <div class="alert alert-<?php 
+            $a = explode('-', isset($alert) ? $alert : '');
             echo $a[0];
-          ?>">
-          <button type="button" class="close" data-dismiss="alert">×</button>
+            ?>">
+          <button type="button" class="close" data-dismiss="alert-">×</button>
           <?php
             $a = explode('-', isset($alert) ? $alert : '');
             echo $a[1];

@@ -6,14 +6,25 @@ class Acesso extends CI_Controller{
 
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
-            redirect('acesso');
+            redirect('usu/acesso');
         }
         return true;
     }
+   
+    public function index(){
+        if($this->validar_sessao()){
+            $this->load->view('usu/includes/topo');
+            $this->load->view('usu/includes/menu');
+            $this->load->view('usu/painelview');
+            $this->load->view('usu/includes/rodape');
+        }else{
+            redirect('usu/acesso');
+        }
+    }
 
-    public function index($alert = null){
+    public function login($alert = null){
         if($this->session->userdata('LOGADO')){
-            redirect('acesso');
+            redirect('usu');
         }
         $dados = null;
         if($alert != null){
@@ -22,19 +33,8 @@ class Acesso extends CI_Controller{
         $this->load->view('usu/loginview',$dados);
     }
 
-
-    public function pagina(){
-        if($this->validar_sessao()){
-            $this->load->view('usu/includes/topo');
-            $this->load->view('usu/includes/menu');
-            $this->load->view('usu/includes/rodape');
-        }else{
-            redirect('usu/acesso');
-        }
-    }
-
     public function logar(){
-        $this->load->model('acessomodel');
+        $this->load->model('bd/acessomodel');
 
         $cpf = $this->input->post('cpf');
         $senha = md5($this->input->post('senha'));
@@ -45,15 +45,15 @@ class Acesso extends CI_Controller{
             $dados['LOGADO'] = TRUE;
 
             $this->session->set_userdata($dados);
-            redirect('');
+            redirect('usu/');
         }else{
-            redirect('acesso/index/2');
+            redirect("usu/acesso/2");
         }
     }
 
     public function logout(){
         $this->session->sess_destroy();
-        redirect('usu/loginview');
+        redirect('usu/acesso');
     }
 
    

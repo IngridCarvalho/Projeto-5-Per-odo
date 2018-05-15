@@ -1,4 +1,0 @@
-CREATE TABLE usuario (
-cpf varchar(15),
-nome varchar(500),
-senha int)

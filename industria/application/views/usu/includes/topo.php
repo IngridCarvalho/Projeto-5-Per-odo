@@ -10,10 +10,10 @@
     <title>Indústria</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?= base_url(); ?>industria/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?= base_url(); ?>industria/dist/css/dashboard.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>dist/css/dashboard.css" rel="stylesheet">
   </head>
 
   <body>
