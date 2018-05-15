@@ -17,7 +17,7 @@
         <thead>
             <tr>
                 <div style="float:right">
-                    <a href="#" class="btn btn-success">Novo Usuário</a>
+                    <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
                 </div>
                 <th>CPF</th>
                 <th>Nome</th>
@@ -29,7 +29,7 @@
             <tr>
                 <td><?= $row->cpf; ?></td>
                 <td><?= $row->nome; ?></td>
-                <td><?= $row->nivel; ?></td>
+                <td><?= $row->fk_nivel; ?></td>
                 <td>
                     <div style="float:right">
                         <a href="#" class="btn btn-info">Editar</a>

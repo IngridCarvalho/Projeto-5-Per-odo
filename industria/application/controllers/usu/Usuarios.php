@@ -25,6 +25,35 @@ class Usuarios extends CI_Controller{
             $this->load->view('usu/includes/rodape');
     }
 
+    public function cadastro(){
+        $this->validar_sessao();
+        $this->load->model('bd/usuariosmodel','usuarios');
+        $dados['nivelusuarios']=$this->usuarios->get_nivel();
+
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/usuarios/novousuarioview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function salvar(){
+        $this->validar_sessao();
+        $this->load->model('bd/bancomodel');
+        $info['cpf'] = $this->input->post('cpf');
+        $info['nome'] = $this->input->post('nome');
+        $info['sobrenome'] = $this->input->post('sobrenome');
+        $info['senha'] = md5($this->input->post('senha'));
+        $info['fk_nivel'] = $this->input->post('nivel');
+
+        $result = $this->bancomodel->insert('usuarios',$info);
+        if($result){
+            redirect('usu/usuarios/1');
+        }else{
+            redirect('usu/usuarios/2');
+        }
+        
+    }
+
     public function msg($alert) {
 		$str = '';
 		if ($alert == 1)

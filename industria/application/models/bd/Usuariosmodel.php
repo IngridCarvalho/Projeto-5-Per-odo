@@ -20,6 +20,11 @@ class Usuariosmodel extends CI_Model {
 		$filme = $this->db->get('usuarios')->result();
                 return $filme;
                
+        }
+        
+        public function get_nivel() {
+		$result = $this->db->get('nivelusuarios')->result();
+		return $result;
 	}
         
         public function get_filmes($codigo){
