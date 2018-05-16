@@ -17,8 +17,8 @@ class Usuariosmodel extends CI_Model {
 	
 	public function get_usuario() {
                 $this->db->order_by('nome','CRESC');
-		$filme = $this->db->get('usuarios')->result();
-                return $filme;
+		$usuario = $this->db->get('usuarios')->result();
+                return $usuario;
                
         }
         
@@ -27,11 +27,13 @@ class Usuariosmodel extends CI_Model {
 		return $result;
 	}
         
-        public function get_filmes($codigo){
-            $this->db->where('codigo',$codigo);
-            $result = $this->db->get('filmes')->result();
+        public function get_usuarios($nome){
+            $this->db->where('nome',$nome);
+            $result = $this->db->get('usuarios')->result();
             return $result;
         }
+
+        
 	
 //	public function get_noticia_slug($slug) {
 //		$this->db->join('tipos', 'cod_tipo = tipos_cod_tipo', 'inner');

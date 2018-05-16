@@ -36,6 +36,18 @@ class Usuarios extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
+    public function editar($nome){
+        $this->validar_sessao();
+        $this->load->model('bd/usuariosmodel','usuarios');
+        $dados['usuarios'] = $this->usuarios->get_usuarios($nome);
+        $dados['nivelusuarios']=$this->usuarios->get_nivel();
+
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/usuarios/editarusuarioview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
     public function salvar(){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
@@ -52,6 +64,38 @@ class Usuarios extends CI_Controller{
             redirect('usu/usuarios/2');
         }
         
+    }
+
+    public function atualizar(){
+        $this->validar_sessao();
+        $this->load->model('bd/bancomodel');
+        $info['cpf'] = $this->input->post('cpf');
+        $info['nome'] = $this->input->post('nome');
+        $info['sobrenome'] = $this->input->post('sobrenome');
+        $info['senha'] = md5($this->input->post('senha'));
+        $info['fk_nivel'] = $this->input->post('nivel');
+
+        $codigo = $this->input->post('codigo');
+
+        $result = $this->bancomodel->update('usuarios',$info,$codigo);
+        if($result){
+            redirect('usu/usuarios/5');
+        }else{
+            redirect('usu/usuarios/6');
+        }
+        
+    }
+
+    public function deletar($codigo){
+        $this->validar_sessao();
+        $this->load->model('bd/bancomodel');
+
+        $result = $this->bancomodel->delete('usuarios',$codigo);
+        if($result){
+            redirect('usu/usuarios/3');
+        }else{
+            redirect('usu/usuarios/4');
+        }
     }
 
     public function msg($alert) {

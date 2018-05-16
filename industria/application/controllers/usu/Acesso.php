@@ -42,6 +42,7 @@ class Acesso extends CI_Controller{
 
         if(count($usuario) === 1){
             $dados['nome'] = $usuario[0]->nome;
+            $dados['fk_nivel'] = $usuario[0]->fk_nivel;
             $dados['LOGADO'] = TRUE;
 
             $this->session->set_userdata($dados);

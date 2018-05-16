@@ -29,11 +29,17 @@
             <tr>
                 <td><?= $row->cpf; ?></td>
                 <td><?= $row->nome; ?></td>
-                <td><?= $row->fk_nivel; ?></td>
+                <?php if($row->fk_nivel == 1){?>
+                    <td>Administrador</td>
+                <?php }else if($row->fk_nivel == 2){?>
+                    <td/>Gerente</td>
+                    <?php } else{ ?>
+                        <td>Funcionario</td>
+                    <?php } ?>
                 <td>
                     <div style="float:right">
-                        <a href="#" class="btn btn-info">Editar</a>
-                        <a href="#" class="btn btn-danger">Excluir</a>
+                        <a href="<?= base_url('usu/usuarios/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usu/usuarios/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

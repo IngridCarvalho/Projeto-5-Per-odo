@@ -49,10 +49,13 @@
             </a>
           </li>
           <li class="nav-item">
+          <?php if($this->session->userdata('fk_nivel') == 1){?>
             <a class="nav-link" href="<?= base_url('usu/usuarios')?>">
               <span data-feather="users"></span>
               Usuários
             </a>
+          <?php }?>  
+             
           </li>
         </ul>
       </div>

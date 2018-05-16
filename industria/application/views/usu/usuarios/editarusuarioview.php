@@ -1,27 +1,30 @@
-<h1>Novo Usuário</h1>
-<form action="<?= base_url('usu/usuarios/salvar')?>" method="post" enctype="multipart/form-data">
+<?php foreach($usuarios as $row): ?>
+<h1>Ver Usuário - <?= $row->nome ?></h1>
+<?php endforeach; ?>
+<form action="<?= base_url('usu/usuarios/atualizar')?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="codigo" value="<?= $usuarios[0]->codigo?>">
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="cpf">CPF: </label>
-            <input type="number" class="form-control" name="cpf">
+            <input type="number" class="form-control" name="cpf" value="<?= $usuarios[0]->cpf?>">
         </div>
     </div>
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="nome">Nome: </label>
-            <input type="text" class="form-control" name="nome">
+            <input type="text" class="form-control" name="nome" value="<?= $usuarios[0]->nome?>">
         </div>
     </div>
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="sobrenome">Sobrenome: </label>
-            <input type="text" class="form-control" name="sobrenome">
+            <input type="text" class="form-control" name="sobrenome" value="<?= $usuarios[0]->sobrenome?>">
         </div>
     </div>
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="senha">Senha: </label>
-            <input type="password" class="form-control" name="senha" max="8">
+            <input type="password" class="form-control" name="senha" max="8" value="<?= $usuarios[0]->senha?>">
         </div>
     </div>
     <div class="row form-group">
@@ -29,11 +32,10 @@
             <label for="nivel">Nível: </label>
             <select class="form-control" name="nivel">
                 <?php foreach ($nivelusuarios as $row):?>
-                    <option value="<?= $row->nivel?>"><?= $row->tipo?></option>   
+                    <option value="<?= $row->nivel?>" <?= $row->nivel == $usuarios[0]->fk_nivel ? 'selected' : '' ?>><?= $row->tipo?></option>   
                 <?php endforeach;?>
             </select>
         </div>
     </div>
     <button type="submit" class="btn btn-success">Salvar</button>
-    <button type="reset" class="btn btn-info" onclick="return confirm('Deseja limpar o formulário de cadastro?')">Limpar</button>
 </form>
