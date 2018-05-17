@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="page-header">Usuários</h1>
+    <h1 class="page-header">Produtos</h1>
     <?php if(isset($alert)) {?>
         <div class="alert alert-<?php
             $a = explode('-', isset($alert) ? $alert : '');
@@ -17,29 +17,23 @@
         <thead>
             <tr>
                 <div style="float:right">
-                    <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
+                    <a href="<?= base_url('usu/produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
                 </div>
-                <th>CPF</th>
+                <th>Código</th>
                 <th>Nome</th>
-                <th>Nível de Usuário</th>
+                <th>Quantidade</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach($usuarios as $row):?>
+            <?php foreach($produtos as $row):?>
             <tr>
-                <td><?= $row->cpf; ?></td>
+                <td><?= $row->codigo; ?></td>
                 <td><?= $row->nome; ?></td>
-                <?php if($row->fk_nivel == 1){?>
-                    <td>Administrador</td>
-                <?php }else if($row->fk_nivel == 2){?>
-                    <td/>Gerente</td>
-                    <?php } else{ ?>
-                        <td>Funcionario</td>
-                    <?php } ?>
+                <td><?= $row->quantidade; ?></td>
                 <td>
                     <div style="float:right">
-                        <a href="<?= base_url('usu/usuarios/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/usuarios/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
+                        <a href="<?= base_url('usu/produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usu/produtos/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

@@ -75,9 +75,9 @@ class Usuarios extends CI_Controller{
         $info['senha'] = md5($this->input->post('senha'));
         $info['fk_nivel'] = $this->input->post('nivel');
 
-        $codigo = $this->input->post('codigo');
+        $id = $this->input->post('id');
 
-        $result = $this->bancomodel->update('usuarios',$info,$codigo);
+        $result = $this->bancomodel->update('usuarios',$info,$id);
         if($result){
             redirect('usu/usuarios/5');
         }else{
@@ -86,11 +86,11 @@ class Usuarios extends CI_Controller{
         
     }
 
-    public function deletar($codigo){
+    public function deletar($id){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
 
-        $result = $this->bancomodel->delete('usuarios',$codigo);
+        $result = $this->bancomodel->delete('usuarios',$id);
         if($result){
             redirect('usu/usuarios/3');
         }else{

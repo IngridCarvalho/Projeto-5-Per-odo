@@ -53,6 +53,7 @@ $route['usu'] = 'usu/acesso';
 $route['usu/acesso'] = 'usu/acesso/login';
 $route['usu/acesso/(:num)'] = 'usu/acesso/login/$1';
 $route['usu/usuarios/(:num)'] = 'usu/usuarios/index/$1';
+$route['usu/produtos/(:num)'] = 'usu/produtos/index/$1';
 
 $route['default_controller'] = 'usu/acesso/login';
 $route['404_override'] = '';

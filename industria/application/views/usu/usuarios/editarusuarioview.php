@@ -1,8 +1,8 @@
 <?php foreach($usuarios as $row): ?>
-<h1>Ver Usuário - <?= $row->nome ?></h1>
+<h1>Editar Usuário - <?= $row->nome ?></h1>
 <?php endforeach; ?>
 <form action="<?= base_url('usu/usuarios/atualizar')?>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="codigo" value="<?= $usuarios[0]->codigo?>">
+    <input type="hidden" name="id" value="<?= $usuarios[0]->id?>">
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="cpf">CPF: </label>
