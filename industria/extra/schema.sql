@@ -45,7 +45,7 @@ CREATE TABLE ordemproducao(
 	descricao VARCHAR(60) NOT NULL,
 	data_emissao DATE NOT NULL,
 	data_finalizacao DATE NOT NULL,
-	status BOOLEAN NOT NULL,
+	status int NOT NULL,
 	PRIMARY KEY(id,numero)
 );
 
@@ -60,6 +60,11 @@ CREATE TABLE itensordemproducao(
 	custo_unitario FLOAT NOT NULL,
 	custo_total FLOAT NOT NULL,
 	PRIMARY KEY(id,codigo)
+);
+
+CREATE TABLE status_ordem(
+    id int NOT NULL PRIMARY KEY,
+    status varchar(15) NOT NULL
 );
 
 ALTER TABLE usuarios 
@@ -82,9 +87,16 @@ ALTER TABLE itensordemproducao
 ADD CONSTRAINT codigo_item_fk
 FOREIGN KEY (codigo_item) REFERENCES produtos(codigo);
 
+ALTER TABLE ordemproducao
+ADD CONSTRAINT status_fk
+FOREIGN KEY (status) REFERENCES status_ordem(id);
+
 INSERT INTO nivelusuarios (nivel, tipo) VALUES (1,'Administrador');
 INSERT INTO nivelusuarios (nivel, tipo) VALUES (2,'Gerente');
 INSERT INTO nivelusuarios (nivel, tipo) VALUES (3,'Funcionário');
 
 INSERT INTO tipoproduto (codigo, descricao) VALUES (1, 'Composição');
 INSERT INTO tipoproduto (codigo, descricao) VALUES (2, 'Componente');
+
+INSERT INTO status_ordem (id, status) VALUES (1, 'Pendente');
+INSERT INTO status_ordem (id, status) VALUES (2, 'Finalizado');

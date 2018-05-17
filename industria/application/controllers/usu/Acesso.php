@@ -63,7 +63,7 @@ class Acesso extends CI_Controller{
         if($alert == 1){
             $str = 'success - Login realizado com sucesso!';
         }elseif($alert == 2){
-            $str = 'danger - Não foi possível realizar o login. Verifique o email e a senha e tente novamente!';
+            $str = 'danger - Não foi possível realizar o login. Verifique o cpf e a senha e tente novamente!';
         }else{
             $str = null;
         }
