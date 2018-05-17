@@ -22,6 +22,7 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th>Quantidade</th>
+                <th>Tipo</th>
             </tr>
         </thead>
         <tbody>
@@ -30,8 +31,16 @@
                 <td><?= $row->codigo; ?></td>
                 <td><?= $row->nome; ?></td>
                 <td><?= $row->quantidade; ?></td>
+                <?php if($row->tipo_produto == 1){ ?>
+                    <td>Composição</td>
+                <?php } else{ ?>
+                    <td>Componente</td>
+                <?php } ?>
                 <td>
                     <div style="float:right">
+                        <?php if($row->tipo_produto == 1){ ?>
+                            <a href="<?= base_url('usu/produtos/componentes')?>" class="btn btn-primary">Incluir Componente</a>
+                        <?php } ?>
                         <a href="<?= base_url('usu/produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
                         <a href="<?= base_url('usu/produtos/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
                     </div>

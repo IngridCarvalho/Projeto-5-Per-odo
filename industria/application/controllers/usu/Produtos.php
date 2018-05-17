@@ -99,6 +99,27 @@ class Produtos extends CI_Controller{
         }
     }
 
+    public function componentes(){
+        $this->validar_sessao();
+        $this->load->model('bd/produtosmodel');
+
+        $dados['produtos'] = $this->produtosmodel->get_componentes();
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/produtos/componentesview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function incluir(){
+        $this->validar_sessao();
+        $this->load->model('bd/bancomdel');
+        $info['codigo'] = $this->input->post('componente');
+        $info['codigo_produto'] = $this->input->post('componente');
+        $info['codigo_componente'] = $this->input->post('componente');
+        $info['quantidade_componente'] = $this->input->post('componente');
+    }
+
     public function msg($alert) {
 		$str = '';
 		if ($alert == 1)
@@ -113,7 +134,11 @@ class Produtos extends CI_Controller{
                     $str = 'success- Produto atualizado com sucesso!';
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar o produto. Por favor, tente novamente!';
-		else
+        else if ($alert == 7)
+                    $str = 'success-Componente incluído com sucesso!';
+        else if ($alert == 8)
+                    $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
+        else
                     $str = null;
 		return $str;
 	}

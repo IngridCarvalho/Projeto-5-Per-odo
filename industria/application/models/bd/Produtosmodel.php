@@ -21,6 +21,13 @@ class Produtosmodel extends CI_Model {
         return $result;
     }
 
+    public function get_componentes(){
+        $this->db->order_by('nome','CRESC');
+        $this->db->where('tipo_produto = 2');
+        $produto = $this->db->get('produtos')->result();
+        return $produto;
+    }
+
         
 	
 //	public function get_noticia_slug($slug) {
