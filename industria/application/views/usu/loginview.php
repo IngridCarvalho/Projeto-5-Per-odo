@@ -35,13 +35,13 @@
       <input type="number"  id="cpf" name="cpf" class="form-control" placeholder="cpf" required autofocus>
       <label for="inputSenha" class="sr-only">Senha</label>
       <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
-      <div class="checkbox mb-3">
+      <!--<div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="Lembrar-me"> Lembrar-me
         </label>
-      </div>
+      </div>-->
       <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?></p>
     </form>
   </body>
 </html>
