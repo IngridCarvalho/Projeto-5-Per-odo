@@ -28,6 +28,10 @@ class Produtosmodel extends CI_Model {
         return $produto;
     }
 
+    public function get_componente_codigo(){
+        
+    }
+
         
 	
 //	public function get_noticia_slug($slug) {

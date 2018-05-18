@@ -42,12 +42,7 @@
               Relatórios
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span data-feather="layers"></span>
-              Composições
-            </a>
-          </li>
+         
           <li class="nav-item">
           <?php if($this->session->userdata('fk_nivel') == 1){?>
             <a class="nav-link" href="<?= base_url('usu/usuarios')?>">
@@ -55,7 +50,12 @@
               Usuários
             </a>
           <?php }?>  
-             
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Manual
+            </a>
           </li>
         </ul>
       </div>

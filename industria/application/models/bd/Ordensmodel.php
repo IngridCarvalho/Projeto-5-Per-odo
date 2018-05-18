@@ -15,10 +15,17 @@ class Ordensmodel extends CI_Model {
 		return $result;
 	}
         
-    public function get_produtos($numero){
+    public function get_ordens($numero){
         $this->db->where('numero',$numero);
         $result = $this->db->get('ordemproducao')->result();
         return $result;
     }
+
+    public function get_componentes(){
+        $this->db->order_by('nome','CRESC');
+        $produto = $this->db->get('produtos')->result();
+        return $produto;
+    }
+
 
  }

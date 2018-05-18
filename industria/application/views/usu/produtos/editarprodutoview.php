@@ -1,3 +1,4 @@
+<div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 <?php foreach($produtos as $row): ?>
 <h1>Editar Produto - <?= $row->nome ?></h1>
 <?php endforeach; ?>
@@ -45,3 +46,4 @@
     </div>
     <button type="submit" class="btn btn-success">Salvar</button>
 </form>
+</div>

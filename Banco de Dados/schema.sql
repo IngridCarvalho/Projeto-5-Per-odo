@@ -32,9 +32,8 @@ CREATE TABLE Tipoproduto (
 
 CREATE TABLE composicao(
 	id INT AUTO_INCREMENT NOT NULL,
-	codigo INT NOT NULL,
 	codigo_produto INT NOT NULL,
-	codigo_componente INT NOT NULL,
+	/*codigo_componente INT NOT NULL*/
 	quantidade_componente FLOAT NOT NULL,
 	PRIMARY KEY(id,codigo)
 );
@@ -42,7 +41,7 @@ CREATE TABLE composicao(
 CREATE TABLE ordemproducao(
 	id INT AUTO_INCREMENT NOT NULL,
 	numero INT NOT NULL,
-	descricao VARCHAR(60) NOT NULL,
+	descricao VARCHAR(500) NOT NULL,
 	data_emissao DATE NOT NULL,
 	data_finalizacao DATE NOT NULL,
 	status int NOT NULL,

@@ -1,4 +1,4 @@
-<div class="container">
+<div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="page-header">Ordem de Produção</h1>
     <?php if(isset($alert)) {?>
         <div class="alert alert-<?php
@@ -12,16 +12,19 @@
         ?>
         </div>
     <?php }?>
-    <div class="bs-example" data-example-id="striped-table">
-    <table class="table table-striped">
+    <div style="float:right; margin-bottom:30px">
+                    <a href="<?= base_url('usu/ordem/incluir')?>" class="btn btn-success">Incluir Ordem</a>
+                </div>
+    <div class="table-responsive">
+   
+    <table class="table table-striped table-sm">
         <thead>
             <tr>
-                <div style="float:right">
-                    <a href="#" class="btn btn-success">Incluir Ordem</a>
-                </div>
+                
                 <th>Código</th>
                 <th>Descrição</th>
-                <th>Data</th>
+                <th>Data de Emissão</th>
+                <th>Data de Finalização</th>
                 <th>Situação</th>
             </tr>
         </thead>
@@ -30,7 +33,8 @@
             <tr>
                 <td><?= $row->numero; ?></td>
                 <td><?= $row->descricao; ?></td>
-                <td><?= $row->data; ?></td>
+                <td><?= implode('/',array_reverse(explode('-',$row->data_emissao))); ?></td>
+                <td><?= implode('/',array_reverse(explode('-',$row->data_finalizacao)));?></td>
                 <?php if($row->status == 1){ ?>
                     <td>Pendente</td>
                 <?php } else{ ?>
@@ -38,8 +42,11 @@
                 <?php } ?>
                 <td>
                     <div style="float:right">
-                        <a href="#" class="btn btn-info">Editar</a>
-                        <a href="#" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
+                        <?php if($row->status == 1){ ?>
+                            <a href="<?= base_url('usu/ordem/componentes')?>" class="btn btn-primary">Incluir Componentes</a>
+                        <?php } ?>
+                        <a href="<?= base_url('usu/ordem/editar/'.$row->numero)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usu/ordem/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

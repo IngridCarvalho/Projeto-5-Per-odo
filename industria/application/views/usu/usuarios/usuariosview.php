@@ -1,4 +1,4 @@
-<div class="container">
+<div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="page-header">Usuários</h1>
     <?php if(isset($alert)) {?>
         <div class="alert alert-<?php
@@ -12,13 +12,15 @@
         ?>
         </div>
     <?php }?>
-    <div class="bs-example" data-example-id="striped-table">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <div style="float:right">
+    <div style="float:right; margin-bottom:30px">
                     <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
                 </div>
+    <div class="table-responsive">
+   
+   <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Nível de Usuário</th>

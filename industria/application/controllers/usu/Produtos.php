@@ -113,10 +113,8 @@ class Produtos extends CI_Controller{
 
     public function incluir(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomdel');
-        $info['codigo'] = $this->input->post('componente');
+        $this->load->model('bd/produtosmodel');
         $info['codigo_produto'] = $this->input->post('componente');
-        $info['codigo_componente'] = $this->input->post('componente');
         $info['quantidade_componente'] = $this->input->post('componente');
     }
 
@@ -129,7 +127,7 @@ class Produtos extends CI_Controller{
 		else if ($alert == 3)
                     $str = 'success- Produto removido com sucesso!';
 		else if ($alert == 4)
-                    $str = 'danger-Não foi possível remover a produto. Por favor, tente novamente!';
+                    $str = 'danger-Não foi possível remover o produto. Por favor, tente novamente!';
 		else if ($alert == 5)
                     $str = 'success- Produto atualizado com sucesso!';
 		else if ($alert == 6)

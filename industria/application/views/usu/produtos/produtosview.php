@@ -1,4 +1,4 @@
-<div class="container">
+<div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="page-header">Produtos</h1>
     <?php if(isset($alert)) {?>
         <div class="alert alert-<?php
@@ -12,14 +12,16 @@
         ?>
         </div>
     <?php }?>
-    <div class="bs-example" data-example-id="striped-table">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <div style="float:right">
+    <div style="float:right; margin-bottom:10px">
                     <a href="<?= base_url('usu/produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
                 </div>
-                <th>Código</th>
+
+    <div class="table-responsive">
+   
+   <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                                <th>Código</th>
                 <th>Nome</th>
                 <th>Quantidade</th>
                 <th>Tipo</th>
@@ -42,7 +44,7 @@
                             <a href="<?= base_url('usu/produtos/componentes')?>" class="btn btn-primary">Incluir Componente</a>
                         <?php } ?>
                         <a href="<?= base_url('usu/produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/produtos/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
+                        <a href="<?= base_url('usu/produtos/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o produto?')">Excluir</a>
                     </div>
                 </td>  
             </tr>
