@@ -8,18 +8,6 @@
         </div>
     </div>
     <div class="row form-group">
-        <div class="col-sm-2">
-            <label for="Data de Emissão">Data de Emissão: </label>
-            <input type="date" class="form-control" name="emissao">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-2">
-            <label for=">Data de Finalização">Data de Finalização: </label>
-            <input type="date" class="form-control" name="finalizacao">
-        </div>
-    </div>
-    <div class="row form-group">
         <div class="col-sm-4">
             <label for="Descrição">Descrição: </label>
             <textarea class="form-control" rows="3" name="descricao"></textarea>

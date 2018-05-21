@@ -50,11 +50,11 @@ class Ordem extends CI_Controller{
 
     public function salvar(){
         $this->validar_sessao();
+        date_default_timezone_set('America/Sao_Paulo');
         $this->load->model('bd/bancomodel');
         $info['numero'] = $this->input->post('numero');
         $info['descricao'] = $this->input->post('descricao');
-        $info['data_emissao'] = implode('-',array_reverse(explode('/',$this->input->post('emissao'))));
-        $info['data_finalizacao'] = implode('-',array_reverse(explode('/',$this->input->post('finalizacao'))));
+        $info['data_emissao'] = Date("Y-m-d"); /*implode('-',array_reverse(explode('/',$this->input->post('emissao')))); */
         $info['status'] = 1;
 
         $result = $this->bancomodel->insert('ordemproducao',$info);
@@ -65,14 +65,29 @@ class Ordem extends CI_Controller{
         }
     }
 
+    public function finalizar($id){
+        $this->validar_sessao();
+        date_default_timezone_set('America/Sao_Paulo');
+        $this->load->model('bd/bancomodel');
+        $info['data_finalizacao'] = Date("Y-m-d");
+        $info['status'] = 2;
+
+   //     $result = $this->bancomodel->insert('ordemproducao',$info);
+        $result = $this->bancomodel->update('ordemproducao',$info,$id);
+
+        if($result){
+            redirect('usu/ordem/7');
+        }else{
+            redirect('usu/ordem/8');
+        }
+    }
+
     public function atualizar(){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
         $info['numero'] = $this->input->post('numero');
         $info['descricao'] = $this->input->post('descricao');
-        $info['data_emissao'] = implode('-',array_reverse(explode('/',$this->input->post('emissao'))));
-        $info['data_finalizacao'] = implode('-',array_reverse(explode('/',$this->input->post('finalizacao'))));
-
+       
         $id = $this->input->post('id');
 
         $result = $this->bancomodel->update('ordemproducao',$info,$id);
@@ -83,6 +98,7 @@ class Ordem extends CI_Controller{
         }
         
     }
+
 
     public function deletar($id){
         $this->validar_sessao();
@@ -124,9 +140,9 @@ class Ordem extends CI_Controller{
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar a ordem de produção. Por favor, tente novamente!';
         else if ($alert == 7)
-                    $str = 'success-Componente incluído com sucesso!';
+                    $str = 'success-Ordem de produção finalizado com sucesso!';
         else if ($alert == 8)
-                    $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
+                    $str = 'danger-Não foi possível finalizar a ordem de produção. Por favor, tente novamente!';
         else
                     $str = null;
 		return $str;

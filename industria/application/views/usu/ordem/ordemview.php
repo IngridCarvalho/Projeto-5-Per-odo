@@ -44,6 +44,7 @@
                     <div style="float:right">
                         <?php if($row->status == 1){ ?>
                             <a href="<?= base_url('usu/ordem/componentes')?>" class="btn btn-primary">Incluir Componentes</a>
+                            <a href="<?= base_url('usu/ordem/finalizar/'.$row->id)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
                         <?php } ?>
                         <a href="<?= base_url('usu/ordem/editar/'.$row->numero)?>" class="btn btn-info">Editar</a>
                         <a href="<?= base_url('usu/ordem/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
