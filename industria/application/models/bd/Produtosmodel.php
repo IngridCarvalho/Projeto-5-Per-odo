@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Produtosmodel extends CI_Model {
 
     public function get_produto() {
-        $this->db->order_by('nome','CRESC');
+        $this->db->order_by('codigo','CRESC');
 		$produto = $this->db->get('produtos')->result();
         return $produto;
     }
@@ -21,8 +21,14 @@ class Produtosmodel extends CI_Model {
         return $result;
     }
 
+    public function get_codigo($codigo){
+        $this->db->where('codigo',$codigo);
+        $result = $this->db->get('produtos')->result();
+        return $result;
+    }
+
     public function get_componentes(){
-        $this->db->order_by('nome','CRESC');
+        $this->db->order_by('codigo','CRESC');
         $this->db->where('tipo_produto = 2');
         $produto = $this->db->get('produtos')->result();
         return $produto;

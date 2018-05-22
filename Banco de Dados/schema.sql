@@ -1,68 +1,56 @@
 CREATE TABLE usuarios (
-	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    cpf VARCHAR(15) NOT NULL,
+	cpf VARCHAR(15) NOT NULL PRIMARY KEY,
     nome VARCHAR(200) NOT NULL,
     sobrenome VARCHAR(100) NOT NULL,
     senha VARCHAR(100) NOT NULL,
-    fk_nivel CHARACTER NOT NULL
+    fk_nivel CHAR NOT NULL
 );
 
 CREATE TABLE nivelusuarios(
-    nivel CHARACTER NOT NULL PRIMARY KEY,
+    nivel CHAR NOT NULL PRIMARY KEY,
     tipo VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE produtos (
- 	id INT AUTO_INCREMENT NOT NULL,
-	codigo INT NOT NULL,
-    nome VARCHAR(100) NOT NULL,
+ 	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
     quantidade FLOAT NOT NULL,
     preco_custo FLOAT NOT NULL,
     preco_venda FLOAT NOT NULL,
-    tipo_produto INT NOT NULL,
-	PRIMARY KEY(id,codigo)
+    tipo_produto CHAR NOT NULL
 );
 
-ALTER TABLE produtos ADD INDEX(codigo);
-
-CREATE TABLE Tipoproduto (
-	codigo INT NOT NULL PRIMARY KEY,
+CREATE TABLE tipoproduto (
+	codigo CHAR NOT NULL PRIMARY KEY,
 	descricao VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE composicao(
-	id INT AUTO_INCREMENT NOT NULL,
+	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	codigo_produto INT NOT NULL,
-	/*codigo_componente INT NOT NULL*/
-	quantidade_componente FLOAT NOT NULL,
-	PRIMARY KEY(id,codigo)
+	codigo_composicao INT NOT NULL
+	quantidade_componente FLOAT NOT NULL
 );
 
 CREATE TABLE ordemproducao(
-	id INT AUTO_INCREMENT NOT NULL,
-	numero INT NOT NULL,
+	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	descricao VARCHAR(500) NOT NULL,
 	data_emissao DATE NOT NULL,
 	data_finalizacao DATE NOT NULL,
-	status int NOT NULL,
-	PRIMARY KEY(id,numero)
+	status CHAR NOT NULL
 );
 
-ALTER TABLE ordemproducao ADD INDEX(numero);
-
 CREATE TABLE itensordemproducao(
-	id INT AUTO_INCREMENT NOT NULL,
-	codigo INT NOT NULL,
+	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	numero_ordem INT NOT NULL,
 	codigo_item INT NOT NULL,
 	quantidade_produzida FLOAT NOT NULL,
 	custo_unitario FLOAT NOT NULL,
-	custo_total FLOAT NOT NULL,
-	PRIMARY KEY(id,codigo)
+	custo_total FLOAT NOT NULL
 );
 
 CREATE TABLE status_ordem(
-    id int NOT NULL PRIMARY KEY,
+    codigo CHAR NOT NULL PRIMARY KEY,
     status varchar(15) NOT NULL
 );
 
@@ -79,8 +67,8 @@ ADD CONSTRAINT codigo_produto_fk
 FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo);
 
 ALTER TABLE itensordemproducao
-ADD CONSTRAINT numero_ordem_fk
-FOREIGN KEY (numero_ordem) REFERENCES ordemproducao(numero);
+ADD CONSTRAINT codigo_ordem_fk
+FOREIGN KEY (numero_ordem) REFERENCES ordemproducao(codigo);
 
 ALTER TABLE itensordemproducao 
 ADD CONSTRAINT codigo_item_fk
@@ -88,7 +76,7 @@ FOREIGN KEY (codigo_item) REFERENCES produtos(codigo);
 
 ALTER TABLE ordemproducao
 ADD CONSTRAINT status_fk
-FOREIGN KEY (status) REFERENCES status_ordem(id);
+FOREIGN KEY (status) REFERENCES status_ordem(codigo);
 
 INSERT INTO nivelusuarios (nivel, tipo) VALUES (1,'Administrador');
 INSERT INTO nivelusuarios (nivel, tipo) VALUES (2,'Gerente');
@@ -97,5 +85,5 @@ INSERT INTO nivelusuarios (nivel, tipo) VALUES (3,'Funcionário');
 INSERT INTO tipoproduto (codigo, descricao) VALUES (1, 'Composição');
 INSERT INTO tipoproduto (codigo, descricao) VALUES (2, 'Componente');
 
-INSERT INTO status_ordem (id, status) VALUES (1, 'Pendente');
-INSERT INTO status_ordem (id, status) VALUES (2, 'Finalizado');
+INSERT INTO status_ordem (codigo, status) VALUES (1, 'Pendente');
+INSERT INTO status_ordem (codigo, status) VALUES (2, 'Finalizado');

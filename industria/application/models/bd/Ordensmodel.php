@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ordensmodel extends CI_Model {
 
     public function get_ordem() {
-        $this->db->order_by('numero','CRESC');
+        $this->db->order_by('codigo','CRESC');
 		$result = $this->db->get('ordemproducao')->result();
         return $result;
     }
@@ -15,8 +15,8 @@ class Ordensmodel extends CI_Model {
 		return $result;
 	}
         
-    public function get_ordens($numero){
-        $this->db->where('numero',$numero);
+    public function get_ordens($codigo){
+        $this->db->where('codigo',$codigo);
         $result = $this->db->get('ordemproducao')->result();
         return $result;
     }

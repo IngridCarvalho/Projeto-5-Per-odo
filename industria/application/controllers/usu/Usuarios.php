@@ -68,16 +68,15 @@ class Usuarios extends CI_Controller{
 
     public function atualizar(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
-        $info['cpf'] = $this->input->post('cpf');
+        $this->load->model('bd/usuariosmodel');
         $info['nome'] = $this->input->post('nome');
         $info['sobrenome'] = $this->input->post('sobrenome');
         $info['senha'] = md5($this->input->post('senha'));
         $info['fk_nivel'] = $this->input->post('nivel');
 
-        $id = $this->input->post('id');
+        $cpf = $this->input->post('cpf');
 
-        $result = $this->bancomodel->update('usuarios',$info,$id);
+        $result = $this->usuariosmodel->update_usuario('usuarios',$info,$cpf);
         if($result){
             redirect('usu/usuarios/5');
         }else{
@@ -86,11 +85,11 @@ class Usuarios extends CI_Controller{
         
     }
 
-    public function deletar($id){
+    public function deletar($cpf){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bd/usuariosmodel');
 
-        $result = $this->bancomodel->delete('usuarios',$id);
+        $result = $this->usuariosmodel->delete_usuario('usuarios',$cpf);
         if($result){
             redirect('usu/usuarios/3');
         }else{

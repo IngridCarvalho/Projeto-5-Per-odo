@@ -51,7 +51,6 @@ class Produtos extends CI_Controller{
     public function salvar(){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
-        $info['codigo'] = $this->input->post('codigo');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
         $info['preco_custo'] = $this->input->post('custo');
@@ -69,16 +68,15 @@ class Produtos extends CI_Controller{
     public function atualizar(){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
-        $info['codigo'] = $this->input->post('codigo');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
         $info['preco_custo'] = $this->input->post('custo');
         $info['preco_venda'] = $this->input->post('venda');
         $info['tipo_produto'] = $this->input->post('tipo');
 
-        $id = $this->input->post('id');
+        $codigo = $this->input->post('codigo');
 
-        $result = $this->bancomodel->update('produtos',$info,$id);
+        $result = $this->bancomodel->update('produtos',$info,$codigo);
         if($result){
             redirect('usu/produtos/5');
         }else{
@@ -87,11 +85,11 @@ class Produtos extends CI_Controller{
         
     }
 
-    public function deletar($id){
+    public function deletar($codigo){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
 
-        $result = $this->bancomodel->delete('produtos',$id);
+        $result = $this->bancomodel->delete('produtos',$codigo);
         if($result){
             redirect('usu/produtos/3');
         }else{
@@ -99,11 +97,12 @@ class Produtos extends CI_Controller{
         }
     }
 
-    public function componentes(){
+    public function componentes($codigo){
         $this->validar_sessao();
         $this->load->model('bd/produtosmodel');
-
+     
         $dados['produtos'] = $this->produtosmodel->get_componentes();
+        $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
@@ -113,9 +112,20 @@ class Produtos extends CI_Controller{
 
     public function incluir(){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel');
-        $info['codigo_produto'] = $this->input->post('componente');
-        $info['quantidade_componente'] = $this->input->post('componente');
+        $this->load->model('bd/bancomodel');
+        
+        $info['codigo_produto'] = $this->input->post('codigo');
+        $info['codigo_composicao'] = $this->input->post('cod');
+        $info['quantidade_componente'] = $this->input->post('qtd_usada');       
+        
+
+        $result = $this->bancomodel->insert('composicao',$info);
+        if($result){
+            redirect('usu/produtos/7');
+        }else{
+            redirect('usu/produtos/8');
+        }
+
     }
 
     public function msg($alert) {

@@ -9,14 +9,14 @@ class Bancomodel extends CI_Model{
         return $result;
     }
 	
-    public function update($tabela, $data, $id) {
-        $this->db->where('id', $id);
+    public function update($tabela, $data, $codigo) {
+        $this->db->where('codigo', $codigo);
 	$result = $this->db->update($tabela, $data);
 	return $result;
     }
 	
-    public function delete($tabela, $id) {
-        $this->db->where('id', $id);
+    public function delete($tabela, $codigo) {
+        $this->db->where('codigo', $codigo);
 	$result = $this->db->delete($tabela);
 	return $result;
     }

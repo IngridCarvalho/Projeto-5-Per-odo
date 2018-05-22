@@ -31,7 +31,7 @@
         <tbody>
             <?php foreach($ordens as $row):?>
             <tr>
-                <td><?= $row->numero; ?></td>
+                <td><?= $row->codigo; ?></td>
                 <td><?= $row->descricao; ?></td>
                 <td><?= implode('/',array_reverse(explode('-',$row->data_emissao))); ?></td>
                 <td><?= implode('/',array_reverse(explode('-',$row->data_finalizacao)));?></td>
@@ -44,10 +44,10 @@
                     <div style="float:right">
                         <?php if($row->status == 1){ ?>
                             <a href="<?= base_url('usu/ordem/componentes')?>" class="btn btn-primary">Incluir Componentes</a>
-                            <a href="<?= base_url('usu/ordem/finalizar/'.$row->id)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
+                            <a href="<?= base_url('usu/ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
                         <?php } ?>
-                        <a href="<?= base_url('usu/ordem/editar/'.$row->numero)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/ordem/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
+                        <a href="<?= base_url('usu/ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usu/ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

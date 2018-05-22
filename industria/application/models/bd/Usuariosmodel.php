@@ -21,4 +21,16 @@ class Usuariosmodel extends CI_Model {
             $result = $this->db->get('usuarios')->result();
             return $result;
         }
+
+        public function delete_usuario($tabela, $cpf) {
+                $this->db->where('cpf', $cpf);
+                $result = $this->db->delete($tabela);
+                return $result;
+        }
+
+        public function update_usuario($tabela, $data, $cpf) {
+                $this->db->where('cpf', $cpf);
+                $result = $this->db->update($tabela, $data);
+                return $result;
+            }
 }

@@ -2,12 +2,6 @@
 <h1>Nova Ordem de Produção</h1>
 <form action="<?= base_url('usu/ordem/salvar')?>" method="post" enctype="multipart/form-data">
     <div class="row form-group">
-        <div class="col-sm-2">
-            <label for="Número da Ordem">Número da Ordem: </label>
-            <input type="number" class="form-control" name="numero">
-        </div>
-    </div>
-    <div class="row form-group">
         <div class="col-sm-4">
             <label for="Descrição">Descrição: </label>
             <textarea class="form-control" rows="3" name="descricao"></textarea>

@@ -3,12 +3,6 @@
 <form action="<?= base_url('usu/produtos/salvar')?>" method="post" enctype="multipart/form-data">
     <div class="row form-group">
         <div class="col-sm-2">
-            <label for="codigo">Codigo: </label>
-            <input type="number" class="form-control" name="codigo">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-2">
             <label for="nome">Nome: </label>
             <input type="text" class="form-control" name="nome">
         </div>

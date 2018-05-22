@@ -41,10 +41,10 @@
                 <td>
                     <div style="float:right">
                         <?php if($row->tipo_produto == 1){ ?>
-                            <a href="<?= base_url('usu/produtos/componentes')?>" class="btn btn-primary">Incluir Componente</a>
+                            <a href="<?= base_url('usu/produtos/componentes/'.$row->codigo)?>" class="btn btn-primary">Incluir Componente</a>
                         <?php } ?>
                         <a href="<?= base_url('usu/produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/produtos/deletar/'.$row->id)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o produto?')">Excluir</a>
+                        <a href="<?= base_url('usu/produtos/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o produto?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

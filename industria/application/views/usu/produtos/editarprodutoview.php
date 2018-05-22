@@ -3,13 +3,7 @@
 <h1>Editar Produto - <?= $row->nome ?></h1>
 <?php endforeach; ?>
 <form action="<?= base_url('usu/produtos/atualizar')?>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id" value="<?= $produtos[0]->id?>">
-    <div class="row form-group">
-        <div class="col-sm-2">
-            <label for="codigo">Codigo: </label>
-            <input type="number" class="form-control" name="codigo" value="<?= $produtos[0]->codigo?>">
-        </div>
-    </div>
+    <input type="hidden" name="codigo" value="<?= $produtos[0]->codigo?>">
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="nome">Nome: </label>
