@@ -12,18 +12,21 @@
         ?>
         </div>
     <?php }?>
-    <div style="float:right; margin-bottom:30px">
-                    <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
-                </div>
+    
     <div class="table-responsive">
    
-   <table class="table table-striped table-sm">
+   <table class="table table-striped table-sm" id="dataTable">
         <thead>
             <tr>
                 
                 <th>CPF</th>
                 <th>Nome</th>
                 <th>Nível de Usuário</th>
+                <th>
+                    <div style="float:right">
+                        <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>

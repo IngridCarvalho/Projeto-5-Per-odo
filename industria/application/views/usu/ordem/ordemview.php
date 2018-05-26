@@ -12,12 +12,10 @@
         ?>
         </div>
     <?php }?>
-    <div style="float:right; margin-bottom:30px">
-                    <a href="<?= base_url('usu/ordem/incluir')?>" class="btn btn-success">Incluir Ordem</a>
-                </div>
+    
     <div class="table-responsive">
    
-    <table class="table table-striped table-sm">
+    <table class="table table-striped table-sm" id="dataTable">
         <thead>
             <tr>
                 
@@ -26,6 +24,11 @@
                 <th>Data de Emissão</th>
                 <th>Data de Finalização</th>
                 <th>Situação</th>
+                <th>
+                    <div style="float:right">
+                        <a href="<?= base_url('usu/ordem/incluir')?>" class="btn btn-success">Incluir Ordem</a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>

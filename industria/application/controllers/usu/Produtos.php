@@ -101,7 +101,7 @@ class Produtos extends CI_Controller{
         $this->validar_sessao();
         $this->load->model('bd/produtosmodel');
      
-        $dados['produtos'] = $this->produtosmodel->get_componentes();
+        $dados['produtos'] = $this->produtosmodel->get_componentes($codigo);
         $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
         
         $this->load->view('usu/includes/topo');
@@ -116,7 +116,8 @@ class Produtos extends CI_Controller{
         
         $info['codigo_produto'] = $this->input->post('codigo');
         $info['codigo_composicao'] = $this->input->post('cod');
-        $info['quantidade_componente'] = $this->input->post('qtd_usada');       
+        $info['quantidade_componente'] = $this->input->post('qtd_usada');    
+        $info['flag'] = 1;   
         
 
         $result = $this->bancomodel->insert('composicao',$info);

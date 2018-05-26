@@ -12,19 +12,22 @@
         ?>
         </div>
     <?php }?>
-    <div style="float:right; margin-bottom:10px">
-                    <a href="<?= base_url('usu/produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
-                </div>
-
-    <div class="table-responsive">
    
-   <table class="table table-striped table-sm">
+
+    <div class="bs-example" data-example-id="striped-table">
+   
+   <table class="table table-striped" id="dataTable">
         <thead>
             <tr>
-                                <th>Código</th>
+            <th>Código</th>
                 <th>Nome</th>
                 <th>Quantidade</th>
                 <th>Tipo</th>
+                <th>
+                    <div style="float:right">
+                        <a href="<?= base_url('usu/produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
+                    </div>
+                </th>
             </tr>
         </thead>
         <tbody>

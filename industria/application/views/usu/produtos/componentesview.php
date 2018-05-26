@@ -1,7 +1,7 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <h1 class="page-header">Escolha de Componentes</h1>
     <div class="bs-example" data-example-id="striped-table">
-            <table class="table table-striped">
+            <table class="table table-striped" id="dataTable">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -9,6 +9,7 @@
                         <th>Quantidade</th>
                         <th>Custo</th>
                         <th>Quantidade usada</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +29,7 @@
                                 <input type="number" class="form-control" name="qtd_usada" >
                             </td>
                             <td>
-                            <button type="submit" class="btn btn-success">incluir</button>
+                            <button style="float:right" type="submit" class="btn btn-success">incluir</button>
                             </td>  
                         </tr>
                              

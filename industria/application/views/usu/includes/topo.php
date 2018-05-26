@@ -11,9 +11,12 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?= base_url(); ?>dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
     <!-- Custom styles for this template -->
     <link href="<?= base_url(); ?>dist/css/dashboard.css" rel="stylesheet">
+
+     
   </head>
 
   <body>
