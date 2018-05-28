@@ -24,21 +24,21 @@
         $('#dataTable').DataTable({
           "language": {
             "sEmptyTable": "Nenhum registro encontrado",
-            "sInfo": "Mostrando de _START_ ate _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 at� 0 de 0 registros",
+            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
             "sInfoFiltered": "(Filtrados de _MAX_ registros)",
             "sInfoPostFix": "",
             "sInfoThousands": ".",
-            "sLengthMenu": "_MENU_ resultados por Pagina",
+            "sLengthMenu": "_MENU_ resultados por Página",
             "sLoadingRecords": "Carregando...",
             "sProcessing": "Processando...",
             "sZeroRecords": "Nenhum registro encontrado",
             "sSearch": "Pesquisar",
             "oPaginate": {
-                "sNext": "Proximo",
+                "sNext": "Próximo",
                 "sPrevious": "Anterior",
                 "sFirst": "Primeiro",
-                "sLast": "Ultio"
+                "sLast": "último"
             },
             "oAria": {
                 "sSortAscending": ": Ordenar colunas de forma ascendente",

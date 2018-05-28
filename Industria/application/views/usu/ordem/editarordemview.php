@@ -2,7 +2,7 @@
 <?php foreach($ordens as $row): ?>
 <h1>Editar Ordem de Produção - <?= $row->codigo ?></h1>
 <?php endforeach; ?>
-<form action="<?= base_url('usu/ordem/atualizar')?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('ordem/atualizar')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="codigo" value="<?= $ordens[0]->codigo?>">
     <div class="row form-group">
         <div class="col-sm-4">

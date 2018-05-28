@@ -17,7 +17,7 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin" action="<?= base_url('usu/acesso/logar') ?>" method="post">
+    <form class="form-signin" action="<?= base_url('acesso/logar') ?>" method="post">
       <?php if (isset($alert)) { ?>
         <div class="alert alert-<?php 
             $a = explode('-', isset($alert) ? $alert : '');

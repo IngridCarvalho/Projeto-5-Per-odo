@@ -6,14 +6,14 @@ class Produtos extends CI_Controller{
 
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
-            redirect('usu/acesso');
+            redirect('acesso');
         }
         return true;
     }
 
     public function index($alert=null){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel');
+        $this->load->model('produtosmodel');
 
         $dados['produtos'] = $this->produtosmodel->get_produto();
         if($alert != null)
@@ -27,7 +27,7 @@ class Produtos extends CI_Controller{
 
     public function cadastro(){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel','produtos');
+        $this->load->model('produtosmodel','produtos');
         $dados['tipoproduto']=$this->produtos->get_tipo();
 
         $this->load->view('usu/includes/topo');
@@ -38,7 +38,7 @@ class Produtos extends CI_Controller{
 
     public function editar($nome){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel','produtos');
+        $this->load->model('produtosmodel','produtos');
         $dados['produtos'] = $this->produtos->get_produtos($nome);
         $dados['tipoproduto']=$this->produtos->get_tipo();
 
@@ -50,7 +50,7 @@ class Produtos extends CI_Controller{
 
     public function salvar(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
         $info['preco_custo'] = $this->input->post('custo');
@@ -59,15 +59,15 @@ class Produtos extends CI_Controller{
 
         $result = $this->bancomodel->insert('produtos',$info);
         if($result){
-            redirect('usu/produtos/1');
+            redirect('produtos/1');
         }else{
-            redirect('usu/produtos/2');
+            redirect('produtos/2');
         }
     }
 
     public function atualizar(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
         $info['preco_custo'] = $this->input->post('custo');
@@ -78,28 +78,28 @@ class Produtos extends CI_Controller{
 
         $result = $this->bancomodel->update('produtos',$info,$codigo);
         if($result){
-            redirect('usu/produtos/5');
+            redirect('produtos/5');
         }else{
-            redirect('usu/produtos/6');
+            redirect('produtos/6');
         }
         
     }
 
     public function deletar($codigo){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
 
         $result = $this->bancomodel->delete('produtos',$codigo);
         if($result){
-            redirect('usu/produtos/3');
+            redirect('produtos/3');
         }else{
-            redirect('usu/produtos/4');
+            redirect('produtos/4');
         }
     }
 
     public function componentes($codigo){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel');
+        $this->load->model('produtosmodel');
      
         $dados['produtos'] = $this->produtosmodel->get_componentes($codigo);
         $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
@@ -112,7 +112,7 @@ class Produtos extends CI_Controller{
 
     public function componentesincluidos($codigo){
         $this->validar_sessao();
-        $this->load->model('bd/produtosmodel');
+        $this->load->model('produtosmodel');
      
         $dados['produtos'] = $this->produtosmodel-> get_componentes_incluidos($codigo);
         $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
@@ -138,20 +138,17 @@ class Produtos extends CI_Controller{
 
     public function incluir($codigo_produto,$codigo_componente){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
        
-        
         $info['codigo_produto'] = $codigo_componente;
         $info['codigo_composicao'] = $codigo_produto;
         $info['quantidade_componente'] = $this->input->post('quantidade');    
         
-        
-
         $result = $this->bancomodel->insert('composicao',$info);
         if($result){
-            redirect('usu/produtos/7');
+            redirect('produtos/7');
         }else{
-            redirect('usu/produtos/8');
+            redirect('produtos/8');
         }
 
     }

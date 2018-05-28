@@ -6,14 +6,14 @@ class Usuarios extends CI_Controller{
     
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
-            redirect('usu/acesso');
+            redirect('acesso');
         }
         return true;
     }
 
     public function index($alert=null){
         $this->validar_sessao();
-        $this->load->model('bd/usuariosmodel');
+        $this->load->model('usuariosmodel');
 
         $dados['usuarios'] = $this->usuariosmodel->get_usuario();
         if($alert != null)
@@ -27,7 +27,7 @@ class Usuarios extends CI_Controller{
 
     public function cadastro(){
         $this->validar_sessao();
-        $this->load->model('bd/usuariosmodel','usuarios');
+        $this->load->model('usuariosmodel','usuarios');
         $dados['nivelusuarios']=$this->usuarios->get_nivel();
 
         $this->load->view('usu/includes/topo');
@@ -38,7 +38,7 @@ class Usuarios extends CI_Controller{
 
     public function editar($nome){
         $this->validar_sessao();
-        $this->load->model('bd/usuariosmodel','usuarios');
+        $this->load->model('usuariosmodel','usuarios');
         $dados['usuarios'] = $this->usuarios->get_usuarios($nome);
         $dados['nivelusuarios']=$this->usuarios->get_nivel();
 
@@ -50,7 +50,7 @@ class Usuarios extends CI_Controller{
 
     public function salvar(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['cpf'] = $this->input->post('cpf');
         $info['nome'] = $this->input->post('nome');
         $info['sobrenome'] = $this->input->post('sobrenome');
@@ -59,16 +59,16 @@ class Usuarios extends CI_Controller{
 
         $result = $this->bancomodel->insert('usuarios',$info);
         if($result){
-            redirect('usu/usuarios/1');
+            redirect('usuarios/1');
         }else{
-            redirect('usu/usuarios/2');
+            redirect('usuarios/2');
         }
         
     }
 
     public function atualizar(){
         $this->validar_sessao();
-        $this->load->model('bd/usuariosmodel');
+        $this->load->model('usuariosmodel');
         $info['nome'] = $this->input->post('nome');
         $info['sobrenome'] = $this->input->post('sobrenome');
         $info['senha'] = md5($this->input->post('senha'));
@@ -78,22 +78,22 @@ class Usuarios extends CI_Controller{
 
         $result = $this->usuariosmodel->update_usuario('usuarios',$info,$cpf);
         if($result){
-            redirect('usu/usuarios/5');
+            redirect('usuarios/5');
         }else{
-            redirect('usu/usuarios/6');
+            redirect('usuarios/6');
         }
         
     }
 
     public function deletar($cpf){
         $this->validar_sessao();
-        $this->load->model('bd/usuariosmodel');
+        $this->load->model('usuariosmodel');
 
         $result = $this->usuariosmodel->delete_usuario('usuarios',$cpf);
         if($result){
-            redirect('usu/usuarios/3');
+            redirect('usuarios/3');
         }else{
-            redirect('usu/usuarios/4');
+            redirect('usuarios/4');
         }
     }
 

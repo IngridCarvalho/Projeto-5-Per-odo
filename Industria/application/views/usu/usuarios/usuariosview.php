@@ -24,7 +24,7 @@
                 <th>Nível de Usuário</th>
                 <th>
                     <div style="float:right">
-                        <a href="<?= base_url('usu/usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
+                        <a href="<?= base_url('usuarios/cadastro')?>" class="btn btn-success">Novo Usuário</a>
                     </div>
                 </th>
             </tr>
@@ -43,8 +43,8 @@
                     <?php } ?>
                 <td>
                     <div style="float:right">
-                        <a href="<?= base_url('usu/usuarios/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/usuarios/deletar/'.$row->cpf)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
+                        <a href="<?= base_url('usuarios/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usuarios/deletar/'.$row->cpf)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

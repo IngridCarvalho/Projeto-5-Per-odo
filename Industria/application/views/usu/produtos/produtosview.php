@@ -25,7 +25,7 @@
                 <th>Tipo</th>
                 <th>
                     <div style="float:right">
-                        <a href="<?= base_url('usu/produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
+                        <a href="<?= base_url('produtos/cadastro')?>" class="btn btn-success">Novo Produto</a>
                     </div>
                 </th>
             </tr>
@@ -44,11 +44,11 @@
                 <td>
                     <div style="float:right">
                         <?php if($row->tipo_produto == 1){ ?>
-                            <a href="<?= base_url('usu/produtos/componentes/'.$row->codigo)?>" class="btn btn-primary">Novo Componente</a>
-                            <a href="<?= base_url('usu/produtos/componentesincluidos/'.$row->codigo)?>" class="btn btn-secondary">Ver Componentes</a>
+                            <a href="<?= base_url('produtos/componentes/'.$row->codigo)?>" class="btn btn-primary">Novo Componente</a>
+                            <a href="<?= base_url('produtos/componentesincluidos/'.$row->codigo)?>" class="btn btn-secondary">Ver Componentes</a>
                         <?php } ?>
-                        <a href="<?= base_url('usu/produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/produtos/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o produto?')">Excluir</a>
+                        <a href="<?= base_url('produtos/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('produtos/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o produto?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

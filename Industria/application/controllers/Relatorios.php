@@ -6,14 +6,14 @@ class Relatorios extends CI_Controller{
 
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
-            redirect('usu/acesso');
+            redirect('acesso');
         }
         return true;
     }
 
     public function index($alert=null){
         $this->validar_sessao();
-        $this->load->model('bd/relatoriosmodel');
+        $this->load->model('relatoriosmodel');
 
         //$dados['ordens'] = $this->relatoriosmodel->get_ordem();
         if($alert != null)

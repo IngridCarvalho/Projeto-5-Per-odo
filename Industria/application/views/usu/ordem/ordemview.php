@@ -26,7 +26,7 @@
                 <th>Situação</th>
                 <th>
                     <div style="float:right">
-                        <a href="<?= base_url('usu/ordem/incluir')?>" class="btn btn-success">Incluir Ordem</a>
+                        <a href="<?= base_url('ordem/incluir')?>" class="btn btn-success">Incluir Ordem</a>
                     </div>
                 </th>
             </tr>
@@ -46,11 +46,11 @@
                 <td>
                     <div style="float:right">
                         <?php if($row->status == 1){ ?>
-                            <a href="<?= base_url('usu/ordem/componentes')?>" class="btn btn-primary">Incluir Componentes</a>
-                            <a href="<?= base_url('usu/ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
+                            <a href="<?= base_url('ordem/componentes')?>" class="btn btn-primary">Incluir Componentes</a>
+                            <a href="<?= base_url('ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
                         <?php } ?>
-                        <a href="<?= base_url('usu/ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('usu/ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
+                        <a href="<?= base_url('ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
                     </div>
                 </td>  
             </tr>

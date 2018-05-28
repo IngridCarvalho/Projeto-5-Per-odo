@@ -2,7 +2,7 @@
 <?php foreach($usuarios as $row): ?>
 <h1>Editar Usuário - <?= $row->nome ?></h1>
 <?php endforeach; ?>
-<form action="<?= base_url('usu/usuarios/atualizar')?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('usuarios/atualizar')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="cpf" value="<?= $usuarios[0]->cpf?>">
     <div class="row form-group">
         <div class="col-sm-2">

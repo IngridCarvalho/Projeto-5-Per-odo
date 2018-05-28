@@ -2,7 +2,7 @@
 <?php foreach($produtos as $row): ?>
 <h1>Editar Produto - <?= $row->nome ?></h1>
 <?php endforeach; ?>
-<form action="<?= base_url('usu/produtos/atualizar')?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('produtos/atualizar')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="codigo" value="<?= $produtos[0]->codigo?>">
     <div class="row form-group">
         <div class="col-sm-2">

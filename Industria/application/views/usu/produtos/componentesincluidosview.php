@@ -26,7 +26,7 @@
                             <td><?= $row->quantidade; ?></td>
                             <td><?= $row->preco_custo; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('usu/produtos/incluircomponente/'.$row2->codigo.'/'.$row->codigo)?>" class="btn btn-success">incluir</a>
+                            <a style="float:right" href="<?= base_url('produtos/incluircomponente/'.$row2->codigo.'/'.$row->codigo)?>" class="btn btn-success">incluir</a>
                             </td>  
                         </tr>
                              

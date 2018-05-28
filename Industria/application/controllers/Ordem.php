@@ -6,14 +6,14 @@ class Ordem extends CI_Controller{
 
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
-            redirect('usu/acesso');
+            redirect('acesso');
         }
         return true;
     }
 
     public function index($alert=null){
         $this->validar_sessao();
-        $this->load->model('bd/ordensmodel');
+        $this->load->model('ordensmodel');
 
         $dados['ordens'] = $this->ordensmodel->get_ordem();
         if($alert != null)
@@ -27,7 +27,7 @@ class Ordem extends CI_Controller{
 
     public function incluir(){
         $this->validar_sessao();
-        $this->load->model('bd/ordensmodel','ordem');
+        $this->load->model('ordensmodel','ordem');
         $dados['ordem']=$this->ordem->get_ordem();
 
         $this->load->view('usu/includes/topo');
@@ -38,7 +38,7 @@ class Ordem extends CI_Controller{
 
     public function editar($codigo){
         $this->validar_sessao();
-        $this->load->model('bd/ordensmodel','ordens');
+        $this->load->model('ordensmodel','ordens');
         $dados['ordens'] = $this->ordens->get_ordens($codigo);
         $dados['status']=$this->ordens->get_status();
 
@@ -51,31 +51,31 @@ class Ordem extends CI_Controller{
     public function salvar(){
         $this->validar_sessao();
         date_default_timezone_set('America/Sao_Paulo');
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['descricao'] = $this->input->post('descricao');
         $info['data_emissao'] = Date("Y-m-d"); /*implode('-',array_reverse(explode('/',$this->input->post('emissao')))); */
         $info['status'] = 1;
 
         $result = $this->bancomodel->insert('ordemproducao',$info);
         if($result){
-            redirect('usu/ordem/1');
+            redirect('ordem/1');
         }else{
-            redirect('usu/ordem/2');
+            redirect('ordem/2');
         }
     }
 
     public function atualizar(){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['descricao'] = $this->input->post('descricao');
        
         $codigo = $this->input->post('codigo');
 
         $result = $this->bancomodel->update('ordemproducao',$info,$codigo);
         if($result){
-            redirect('usu/ordem/5');
+            redirect('ordem/5');
         }else{
-            redirect('usu/ordem/6');
+            redirect('ordem/6');
         }
         
     }
@@ -84,7 +84,7 @@ class Ordem extends CI_Controller{
     public function finalizar($codigo){
         $this->validar_sessao();
         date_default_timezone_set('America/Sao_Paulo');
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
         $info['data_finalizacao'] = Date("Y-m-d");
         $info['status'] = 2;
 
@@ -92,28 +92,28 @@ class Ordem extends CI_Controller{
         $result = $this->bancomodel->update('ordemproducao',$info,$codigo);
 
         if($result){
-            redirect('usu/ordem/7');
+            redirect('ordem/7');
         }else{
-            redirect('usu/ordem/8');
+            redirect('ordem/8');
         }
     }
 
     public function deletar($codigo){
         $this->validar_sessao();
-        $this->load->model('bd/bancomodel');
+        $this->load->model('bancomodel');
 
         $result = $this->bancomodel->delete('ordemproducao',$codigo);
         if($result){
-            redirect('usu/ordem/3');
+            redirect('ordem/3');
         }else{
-            redirect('usu/ordem/4');
+            redirect('ordem/4');
         }
     }
 
 
     public function componentes(){
         $this->validar_sessao();
-        $this->load->model('bd/ordensmodel');
+        $this->load->model('ordensmodel');
 
         $dados['componentes'] = $this->ordensmodel->get_componentes();
         
