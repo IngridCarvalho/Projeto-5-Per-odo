@@ -34,14 +34,14 @@ class Produtosmodel extends CI_Model {
         return $produto;
     }
 
-    // public function get_componentes($codigo){
-    //     $this->db->order_by('produtos.codigo','CRESC');
-    //     $this->db->join('composicao','composicao.codigo_produto = produtos.codigo','inner');
-    //     $this->db->where('produtos.codigo !=', $codigo);
-    //     $this->db->where('composicao.codigo_composicao !=', $codigo);
-    //     $produto = $this->db->get('produtos')->result();
-    //     return $produto;
-    // }
+    public function get_componentes_incluidos($codigo){
+        $this->db->order_by('produtos.codigo','CRESC');
+        $this->db->join('composicao','composicao.codigo_produto = produtos.codigo','right');
+        $this->db->where('produtos.codigo !=', $codigo);
+        $this->db->where('composicao.codigo_composicao =', $codigo);
+        $produto = $this->db->get('produtos')->result();
+        return $produto;
+    }
         
 	
 //	public function get_noticia_slug($slug) {

@@ -110,14 +110,41 @@ class Produtos extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function incluir(){
+    public function componentesincluidos($codigo){
+        $this->validar_sessao();
+        $this->load->model('bd/produtosmodel');
+     
+        $dados['produtos'] = $this->produtosmodel-> get_componentes_incluidos($codigo);
+        $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/produtos/componentesincluidosview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+
+    public function incluircomponente($codigo_produto,$codigo_componente){
+        $this->validar_sessao();
+        
+        $dados['produto'] = $codigo_produto;
+        $dados['componente'] =  $codigo_componente;   
+
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/produtos/quantidadecomponenteview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function incluir($codigo_produto,$codigo_componente){
         $this->validar_sessao();
         $this->load->model('bd/bancomodel');
+       
         
-        $info['codigo_produto'] = $this->input->post('codigo');
-        $info['codigo_composicao'] = $this->input->post('cod');
-        $info['quantidade_componente'] = $this->input->post('qtd_usada');    
-        $info['flag'] = 1;   
+        $info['codigo_produto'] = $codigo_componente;
+        $info['codigo_composicao'] = $codigo_produto;
+        $info['quantidade_componente'] = $this->input->post('quantidade');    
+        
         
 
         $result = $this->bancomodel->insert('composicao',$info);

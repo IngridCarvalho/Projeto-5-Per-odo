@@ -28,7 +28,7 @@ CREATE TABLE tipoproduto (
 CREATE TABLE composicao(
 	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	codigo_produto INT NOT NULL,
-	codigo_composicao INT NOT NULL
+	codigo_composicao INT NOT NULL,
 	quantidade_componente FLOAT NOT NULL
 );
 

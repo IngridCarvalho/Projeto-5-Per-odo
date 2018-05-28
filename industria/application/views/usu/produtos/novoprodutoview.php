@@ -38,4 +38,4 @@
     <button type="submit" class="btn btn-success">Salvar</button>
     <button type="reset" class="btn btn-info" onclick="return confirm('Deseja limpar o formulário de cadastro?')">Limpar</button>
 </form>
-<div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+</div>
