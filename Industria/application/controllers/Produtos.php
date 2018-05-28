@@ -110,22 +110,10 @@ class Produtos extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function componentesincluidos($codigo){
-        $this->validar_sessao();
-        $this->load->model('produtosmodel');
-     
-        $dados['produtos'] = $this->produtosmodel-> get_componentes_incluidos($codigo);
-        $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
-        
-        $this->load->view('usu/includes/topo');
-        $this->load->view('usu/includes/menu');
-        $this->load->view('usu/produtos/componentesincluidosview',$dados);
-        $this->load->view('usu/includes/rodape');
-    }
-
-
+   
     public function incluircomponente($codigo_produto,$codigo_componente){
         $this->validar_sessao();
+        $this->load->model('produtosmodel');
         
         $dados['produto'] = $codigo_produto;
         $dados['componente'] =  $codigo_componente;   
@@ -139,10 +127,24 @@ class Produtos extends CI_Controller{
     public function incluir($codigo_produto,$codigo_componente){
         $this->validar_sessao();
         $this->load->model('bancomodel');
-       
+        $this->load->model('produtosmodel');
+        
+        $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
+        
+        $quantidade_produto = $this->input->post('quantidade');
+        exit(var_dump($quantidade_componente));
+        
+        if($quantidade_componente >= $quantidade_produto){
+            $info['quantidade_componente'] = $quantidade_produto;   
+            $atualizar_estoque['quantidade'] = $quantidade_componente - $quantidade_produto;
+            $this->bancomodel->update('produtos',$atualizar_estoque,$codigo_componente);
+        
+        }else{
+            redirect('produto/8');
+        }
         $info['codigo_produto'] = $codigo_componente;
         $info['codigo_composicao'] = $codigo_produto;
-        $info['quantidade_componente'] = $this->input->post('quantidade');    
+        
         
         $result = $this->bancomodel->insert('composicao',$info);
         if($result){
@@ -152,6 +154,33 @@ class Produtos extends CI_Controller{
         }
 
     }
+    
+      public function componentesincluidos($codigo){
+        $this->validar_sessao();
+        $this->load->model('produtosmodel');
+     
+        $dados['produtos'] = $this->produtosmodel-> get_componentes_incluidos($codigo);
+        $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/produtos/componentesincluidosview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function excluir_componente($codigo){
+        $this->validar_sessao();
+        $this->load->model('bancomodel');
+
+        $result = $this->bancomodel->delete('composicao',$codigo);
+        if($result){
+            redirect('produtos/9');
+        }else{
+            redirect('produtos/10');
+        }
+    }
+    
+   
 
     public function msg($alert) {
 		$str = '';
@@ -167,11 +196,15 @@ class Produtos extends CI_Controller{
                     $str = 'success- Produto atualizado com sucesso!';
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar o produto. Por favor, tente novamente!';
-        else if ($alert == 7)
+                else if ($alert == 7)
                     $str = 'success-Componente incluído com sucesso!';
-        else if ($alert == 8)
+                else if ($alert == 8)
                     $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
-        else
+                else if ($alert == 9)
+                    $str = 'success-Componente excluído com sucesso!';
+                else if ($alert == 10)
+                    $str = 'danger-Não foi possível excluído o componente. Por favor, tente novamente!';
+                else
                     $str = null;
 		return $str;
 	}

@@ -42,6 +42,14 @@ class Produtosmodel extends CI_Model {
         $produto = $this->db->get('produtos')->result();
         return $produto;
     }
+    public function get_quantidade($codigo){
+        $this->db->select('quantidade');
+        $this->db->where('codigo',$codigo);
+        $query = $this->db->get('produtos');
+        $result = $query->row();
+        return $result;
+    }
+  
         
 	
 //	public function get_noticia_slug($slug) {

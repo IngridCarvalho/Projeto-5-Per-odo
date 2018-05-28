@@ -4,7 +4,7 @@
             <table class="table table-striped" id="dataTable">
                 <thead>
                     <tr>
-                        <th>Código</th>
+                        <th>Código da Composição</th>
                         <th>Nome</th>
                         <th>Quantidade</th>
                         <th>Custo</th>
@@ -26,7 +26,7 @@
                             <td><?= $row->quantidade; ?></td>
                             <td><?= $row->preco_custo; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/incluircomponente/'.$row2->codigo.'/'.$row->codigo)?>" class="btn btn-success">incluir</a>
+                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo)?>" class="btn btn-danger">excluir</a>
                             </td>  
                         </tr>
                              
