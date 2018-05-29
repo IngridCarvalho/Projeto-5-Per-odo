@@ -25,7 +25,7 @@ class Ordem extends CI_Controller{
             $this->load->view('usu/includes/rodape');
     }
 
-    public function incluir(){
+    public function novaordem(){
         $this->validar_sessao();
         $this->load->model('ordensmodel','ordem');
         $dados['ordem']=$this->ordem->get_ordem();
@@ -110,17 +110,85 @@ class Ordem extends CI_Controller{
         }
     }
 
-
-    public function componentes(){
+    public function componentes($codigo){
         $this->validar_sessao();
         $this->load->model('ordensmodel');
 
-        $dados['componentes'] = $this->ordensmodel->get_componentes();
+        $dados['componentes'] = $this->ordensmodel->get_componentes($codigo);
+        $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
         $this->load->view('usu/ordem/ordemcomponentesview',$dados);
         $this->load->view('usu/includes/rodape');
+    }
+
+    public function incluircomponente($codigo_ordem,$codigo_componente){
+        $this->validar_sessao();
+        $this->load->model('ordensmodel');
+        
+        $dados['ordem'] = $codigo_ordem;
+        $dados['componente'] =  $codigo_componente;   
+
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/ordem/quantidadecomponenteview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function incluir($codigo_ordem,$codigo_componente){
+        $this->validar_sessao();
+        $this->load->model('bancomodel');
+        $this->load->model('ordensmodel');
+        
+        // $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
+        $quantidade_ordem = $this->input->post('quantidade');
+        
+        // if($quantidade_ordem >= $quantidade_produto){
+            $info['quantidade_produzida'] = $quantidade_ordem;   
+            // $atualizar_estoque['quantidade'] = $quantidade_componente - $quantidade_produto;
+            // $this->bancomodel->update('produtos',$atualizar_estoque,$codigo_componente);
+        
+        // }else{
+        //     redirect('produto/8');
+        // }
+        $info['custo_unitario'] = $this->input->post('custo');
+        $info['codigo_item'] = $codigo_componente;
+        $info['numero_ordem'] = $codigo_produto;
+        
+        
+        $result = $this->bancomodel->insert('composicao',$info);
+        if($result){
+            redirect('ordem/9');
+        }else{
+            redirect('ordem/10');
+        }
+
+    }
+    
+    public function componentesincluidos($codigo){
+        $this->validar_sessao();
+        $this->load->model('ordensmodel');
+     
+        $dados['ordens'] = $this->ordensmodel-> get_componentes_incluidos($codigo);
+        $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);   
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/ordem/componentesincluidosview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+
+    public function excluir_componente($codigo){
+        $this->validar_sessao();
+        $this->load->model('bancomodel');
+
+        $result = $this->bancomodel->delete('itensordemproducao',$codigo);
+        if($result){
+            redirect('ordem/11');
+        }else{
+            redirect('ordem/12');
+        }
     }
 
     public function msg($alert) {
@@ -141,6 +209,14 @@ class Ordem extends CI_Controller{
                     $str = 'success-Ordem de produção finalizado com sucesso!';
         else if ($alert == 8)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Por favor, tente novamente!';
+        else if ($alert == 9)
+                    $str = 'success-Componente incluído com sucesso!';
+        else if ($alert == 10)
+                    $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
+        else if ($alert == 11)
+                    $str = 'success-Componente excluído com sucesso!';
+        else if ($alert == 12)
+                    $str = 'danger-Não foi possível excluir o componente. Por favor, tente novamente!';
         else
                     $str = null;
 		return $str;

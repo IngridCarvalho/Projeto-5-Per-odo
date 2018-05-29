@@ -21,11 +21,30 @@ class Ordensmodel extends CI_Model {
         return $result;
     }
 
+    public function get_codigo($codigo){
+        $this->db->where('codigo',$codigo);
+        $result = $this->db->get('ordemproducao')->result();
+        return $result;
+    }
+
     public function get_componentes(){
         $this->db->order_by('nome','CRESC');
         $produto = $this->db->get('produtos')->result();
         return $produto;
     }
 
-
+    public function get_componentes_incluidos($codigo){
+        $this->db->order_by('produtos.codigo','CRESC');
+        $this->db->join('itensordemproducao',' itensordemproducao.codigo_item = produtos.codigo','inner');
+        $this->db->where('itensordemproducao.codigo_item =', $codigo);
+        $produto = $this->db->get('produtos')->result();
+        return $produto;
+    }
+    public function get_quantidade($codigo){
+        $this->db->select('quantidade');
+        $this->db->where('codigo',$codigo);
+        $query = $this->db->get('produtos');
+        $result = $query->row();
+        return $result;
+    }
  }

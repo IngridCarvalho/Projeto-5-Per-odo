@@ -130,9 +130,7 @@ class Produtos extends CI_Controller{
         $this->load->model('produtosmodel');
         
         $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
-        
         $quantidade_produto = $this->input->post('quantidade');
-        exit(var_dump($quantidade_componente));
         
         if($quantidade_componente >= $quantidade_produto){
             $info['quantidade_componente'] = $quantidade_produto;   
@@ -196,15 +194,15 @@ class Produtos extends CI_Controller{
                     $str = 'success- Produto atualizado com sucesso!';
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar o produto. Por favor, tente novamente!';
-                else if ($alert == 7)
+        else if ($alert == 7)
                     $str = 'success-Componente incluído com sucesso!';
-                else if ($alert == 8)
+        else if ($alert == 8)
                     $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
-                else if ($alert == 9)
+        else if ($alert == 9)
                     $str = 'success-Componente excluído com sucesso!';
-                else if ($alert == 10)
-                    $str = 'danger-Não foi possível excluído o componente. Por favor, tente novamente!';
-                else
+        else if ($alert == 10)
+                    $str = 'danger-Não foi possível excluir o componente. Por favor, tente novamente!';
+        else
                     $str = null;
 		return $str;
 	}
