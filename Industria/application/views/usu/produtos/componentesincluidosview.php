@@ -1,5 +1,5 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="page-header">Componentes Incluídos</h1>
+    <h1 class="page-header">Componentes: <?= $composicao[0]->nome ?></h1>
     <div class="bs-example" data-example-id="striped-table">
             <table class="table table-striped" id="dataTable">
                 <thead>
@@ -7,7 +7,11 @@
                         <th>Código da Composição</th>
                         <th>Nome do Componente</th>
                         <th>Quantidade</th>
-                        <th>Ação</th>
+                        <th>
+                            <div style="float:right">
+                               <a href="<?= base_url('produtos/componentes/'.$composicao[0]->codigo)?>" class="btn btn-success">Novo Componente</a>
+                            </div>
+                        </th>
                       
                     </tr>
                 </thead>
@@ -24,7 +28,7 @@
                             <td><?= $row->nome; ?></td>
                             <td><?= $row->quantidade_componente; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo_produto)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
+                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo_produto.'/'.$composicao[0]->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
                             </td>  
                         </tr>
                              

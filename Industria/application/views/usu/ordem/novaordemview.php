@@ -1,13 +1,21 @@
+<?php
+date_default_timezone_set('America/Sao_Paulo');
+?>
+
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
 <h1>Nova Ordem de Produção</h1>
-<form action="<?= base_url('ordem/salvar')?>" method="post" enctype="multipart/form-data">
+<form action="<?= base_url('ordem/proximo')?>" method="post" enctype="multipart/form-data">
     <div class="row form-group">
-        <div class="col-sm-4">
-            <label for="Descrição">Descrição: </label>
-            <textarea class="form-control" rows="3" name="descricao"></textarea>
-        </div>   
-    </div>   
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <button type="reset" class="btn btn-info" onclick="return confirm('Deseja limpar o formulário de cadastro?')">Limpar</button>
+        <div class="col-sm-8">
+            <label for="descricao">Descrição: </label>
+            <input type="text" class="form-control" name="descricao" required>
+        </div>
+        <div class="col-sm-2">
+            <label for="dataInicio">Data de Início: </label>
+            <input type="date" class="form-control" name="dataInicio" value="<?php echo date('Y-m-d'); ?>">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Próximo</button>
+    <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
 </form>
 </div>

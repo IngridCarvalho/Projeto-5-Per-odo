@@ -101,8 +101,8 @@ class Produtos extends CI_Controller{
         $this->validar_sessao();
         $this->load->model('produtosmodel');
      
-        $dados['produtos'] = $this->produtosmodel->get_componentes($codigo);
-        $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
+        $dados['produtos'] = $this->produtosmodel->lista_componentes($codigo);
+        $dados['composicao'] = $this->produtosmodel->get_produtos($codigo);   
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
@@ -146,9 +146,9 @@ class Produtos extends CI_Controller{
         
         $result = $this->bancomodel->insert('composicao',$info);
         if($result){
-            redirect('produtos/7');
+            redirect('produtos/componentesincluidos/'.$codigo_produto);
         }else{
-            redirect('produtos/8');
+            redirect('produtos/componentesincluidos/'.$codigo_produto);
         }
 
     }
@@ -157,6 +157,7 @@ class Produtos extends CI_Controller{
         $this->validar_sessao();
         $this->load->model('produtosmodel');
      
+        $dados['composicao'] = $this->produtosmodel->get_produtos($codigo);
         $dados['produtos'] = $this->produtosmodel-> get_componentes_incluidos($codigo);
         $dados['produto'] = $this->produtosmodel->get_codigo($codigo);   
         
@@ -166,15 +167,15 @@ class Produtos extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function excluir_componente($codigo){
+    public function excluir_componente($codigo, $codigo_composicao){
         $this->validar_sessao();
         $this->load->model('produtosmodel');
 
         $result = $this->produtosmodel->delete('composicao',$codigo);
         if($result){
-            redirect('produtos/9');
+            redirect('produtos/componentesincluidos/'.$codigo_composicao);
         }else{
-            redirect('produtos/10');
+            redirect('produtos/componentesincluidos/'.$codigo_composicao);
         }
     }
     
@@ -194,15 +195,7 @@ class Produtos extends CI_Controller{
                     $str = 'success- Produto atualizado com sucesso!';
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar o produto. Por favor, tente novamente!';
-        else if ($alert == 7)
-                    $str = 'success-Componente incluído com sucesso!';
-        else if ($alert == 8)
-                    $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
-        else if ($alert == 9)
-                    $str = 'success-Componente excluído com sucesso!';
-        else if ($alert == 10)
-                    $str = 'danger-Não foi possível excluir o componente. Por favor, tente novamente!';
-        else
+                else
                     $str = null;
 		return $str;
 	}

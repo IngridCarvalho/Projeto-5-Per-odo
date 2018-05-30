@@ -20,4 +20,9 @@ class Bancomodel extends CI_Model{
 	$result = $this->db->delete($tabela);
 	return $result;
     }
+    
+    function insert_id($tabela, $data) {
+        $this->db->insert($tabela, $data);
+        return $this->db->insert_id();
+    }
 }

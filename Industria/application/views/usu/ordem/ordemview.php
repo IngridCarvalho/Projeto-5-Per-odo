@@ -21,7 +21,7 @@
                 
                 <th>Código</th>
                 <th>Descrição</th>
-                <th>Data de Emissão</th>
+                <th>Data de Início</th>
                 <th>Data de Finalização</th>
                 <th>Situação</th>
                 <th>
@@ -46,8 +46,8 @@
                 <td>
                     <div style="float:right">
                         <?php if($row->status == 1){ ?>
-                            <a href="<?= base_url('ordem/componentes/'.$row->codigo)?>" class="btn btn-primary">Novo Componente</a>
-                            <a href="<?= base_url('ordem/componentesincluidos/'.$row->codigo)?>" class="btn btn-secondary">Ver Componentes</a>
+<!--                            <a href="<?= base_url('ordem/componentes/'.$row->codigo)?>" class="btn btn-primary">Novo Componente</a>
+                            <a href="<?= base_url('ordem/componentesincluidos/'.$row->codigo)?>" class="btn btn-secondary">Ver Componentes</a>-->
                             <a href="<?= base_url('ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
                         <?php } ?>
                         <a href="<?= base_url('ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>

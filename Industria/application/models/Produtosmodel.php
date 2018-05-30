@@ -60,6 +60,30 @@ class Produtosmodel extends CI_Model {
         $result = $query->row();
         return $result;
     }
+    
+    public function lista_componentes($codigo){
+        $this->db->select('composicao.codigo_produto');
+        $this->db->where('composicao.codigo_composicao =', $codigo);
+        $componentes = $this->db->get('composicao')->result_array();
+        
+        $componentesIncluidos = [];
+            foreach ($componentes as $key => $value) {
+                $componentesIncluidos[] = $value["codigo_produto"];
+            }
+         
+        if($componentesIncluidos){
+            $this->db->order_by('codigo','CRESC');
+            $this->db->where('codigo !=', $codigo);
+            $this->db->where_not_in('produtos.codigo', $componentesIncluidos);
+            $produtos = $this->db->get('produtos')->result();
+        }else{
+            $this->db->order_by('codigo','CRESC');
+            $this->db->where('codigo !=', $codigo);
+            $produtos = $this->db->get('produtos')->result();
+        }
+        
+        return $produtos;
+    }
 
     public function delete($tabela, $codigo) {
         $this->db->where('codigo_produto', $codigo);

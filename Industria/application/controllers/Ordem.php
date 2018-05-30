@@ -48,19 +48,18 @@ class Ordem extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function salvar(){
+    public function proximo(){
         $this->validar_sessao();
-        date_default_timezone_set('America/Sao_Paulo');
         $this->load->model('bancomodel');
         $info['descricao'] = $this->input->post('descricao');
-        $info['data_emissao'] = Date("Y-m-d"); /*implode('-',array_reverse(explode('/',$this->input->post('emissao')))); */
+        $info['data_emissao'] = $this->input->post('dataInicio'); /*implode('-',array_reverse(explode('/',$this->input->post('emissao')))); */
         $info['status'] = 1;
 
-        $result = $this->bancomodel->insert('ordemproducao',$info);
+        $id_ordem = $this->bancomodel->insert_id('ordemproducao',$info);
         if($result){
-            redirect('ordem/1');
+            redirect('ordem/componentesincluidos/'.$id_ordem);
         }else{
-            redirect('ordem/2');
+            redirect('ordem/componentesincluidos/'.$id_ordem);
         }
     }
 
