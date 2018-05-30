@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Login - Indústria</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?= base_url(); ?>dist/css/bootstrap.min.css" rel="stylesheet">

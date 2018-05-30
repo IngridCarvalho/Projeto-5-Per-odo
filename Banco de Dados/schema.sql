@@ -26,7 +26,6 @@ CREATE TABLE tipoproduto (
 );
 
 CREATE TABLE composicao(
-	codigo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	codigo_produto INT NOT NULL,
 	codigo_composicao INT NOT NULL,
 	quantidade_componente FLOAT NOT NULL
@@ -65,6 +64,10 @@ FOREIGN KEY (tipo_produto) REFERENCES tipoproduto(codigo);
 ALTER TABLE composicao 
 ADD CONSTRAINT codigo_produto_fk
 FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo);
+
+ALTER TABLE composicao 
+ADD CONSTRAINT codigo_composicao_fk
+FOREIGN KEY (codigo_composicao) REFERENCES produtos(codigo);
 
 ALTER TABLE itensordemproducao
 ADD CONSTRAINT codigo_ordem_fk

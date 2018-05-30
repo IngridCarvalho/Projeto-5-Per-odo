@@ -5,9 +5,8 @@
                 <thead>
                     <tr>
                         <th>Código da Composição</th>
-                        <th>Nome</th>
+                        <th>Nome do Componente</th>
                         <th>Quantidade</th>
-                        <th>Custo</th>
                         <th>Ação</th>
                       
                     </tr>
@@ -19,14 +18,13 @@
                     <input type="hidden" name="cod" value="<?= $row2->codigo?>">
                     <?php endforeach ?>   
                         <tr>
-                        <input type="hidden" name="codigo" value="<?= $row->codigo?>">
+                        <!-- <input type="hidden" name="codigo" value="<?= $row->codigo?>"> -->
                   
-                            <td><?= $row->codigo; ?></td>
+                            <td><?= $row->codigo_produto; ?></td>
                             <td><?= $row->nome; ?></td>
-                            <td><?= $row->quantidade; ?></td>
-                            <td><?= $row->preco_custo; ?></td>
+                            <td><?= $row->quantidade_componente; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo)?>" class="btn btn-danger">excluir</a>
+                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo_produto)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
                             </td>  
                         </tr>
                              

@@ -129,17 +129,17 @@ class Produtos extends CI_Controller{
         $this->load->model('bancomodel');
         $this->load->model('produtosmodel');
         
-        $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
+        // $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
         $quantidade_produto = $this->input->post('quantidade');
         
-        if($quantidade_componente >= $quantidade_produto){
+        // if($quantidade_componente >= $quantidade_produto){
             $info['quantidade_componente'] = $quantidade_produto;   
-            $atualizar_estoque['quantidade'] = $quantidade_componente - $quantidade_produto;
-            $this->bancomodel->update('produtos',$atualizar_estoque,$codigo_componente);
+            // $atualizar_estoque['quantidade'] = $quantidade_componente - $quantidade_produto;
+            // $this->bancomodel->update('produtos',$atualizar_estoque,$codigo_componente);
         
-        }else{
-            redirect('produto/8');
-        }
+        // }else{
+        //     redirect('produto/8');
+        // }
         $info['codigo_produto'] = $codigo_componente;
         $info['codigo_composicao'] = $codigo_produto;
         
@@ -168,9 +168,9 @@ class Produtos extends CI_Controller{
 
     public function excluir_componente($codigo){
         $this->validar_sessao();
-        $this->load->model('bancomodel');
+        $this->load->model('produtosmodel');
 
-        $result = $this->bancomodel->delete('composicao',$codigo);
+        $result = $this->produtosmodel->delete('composicao',$codigo);
         if($result){
             redirect('produtos/9');
         }else{

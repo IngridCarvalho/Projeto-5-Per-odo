@@ -26,7 +26,7 @@
                             <td><?= $row->quantidade; ?></td>
                             <td><?= $row->preco_custo; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo)?>" class="btn btn-danger">excluir</a>
+                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
                             </td>  
                         </tr>
                              

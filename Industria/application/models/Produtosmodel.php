@@ -27,17 +27,28 @@ class Produtosmodel extends CI_Model {
         return $result;
     }
 
+    // public function get_componentes($codigo){
+    //     $this->db->order_by('codigo','CRESC');
+    //     $this->db->where('codigo !=', $codigo);
+    //     $produto = $this->db->get('produtos')->result();
+    //     return $produto;
+    // }
+
+
     public function get_componentes($codigo){
-        $this->db->order_by('codigo','CRESC');
-        $this->db->where('codigo !=', $codigo);
+        $this->db->order_by('produtos.codigo','CRESC');
+        $this->db->join('composicao','composicao.codigo_produto = produtos.codigo','right');
+        $this->db->where('composicao.codigo_composicao !=', $codigo);
         $produto = $this->db->get('produtos')->result();
         return $produto;
     }
 
     public function get_componentes_incluidos($codigo){
         $this->db->order_by('produtos.codigo','CRESC');
+        $this->db->select('composicao.codigo_produto');
+        $this->db->select('produtos.nome');
+        $this->db->select('composicao.quantidade_componente');
         $this->db->join('composicao','composicao.codigo_produto = produtos.codigo','inner');
-        $this->db->where('produtos.codigo !=', $codigo);
         $this->db->where('composicao.codigo_composicao =', $codigo);
         $produto = $this->db->get('produtos')->result();
         return $produto;
@@ -48,6 +59,12 @@ class Produtosmodel extends CI_Model {
         $query = $this->db->get('produtos');
         $result = $query->row();
         return $result;
+    }
+
+    public function delete($tabela, $codigo) {
+        $this->db->where('codigo_produto', $codigo);
+	$result = $this->db->delete($tabela);
+	return $result;
     }
   
         
