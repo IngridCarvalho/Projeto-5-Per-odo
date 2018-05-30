@@ -30,7 +30,7 @@
           ?>
         </div>
                 <?php } ?>
-      <h1 class="h3 mb-3 font-weight-normal">Acesso ao Sistema</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Acesso ao Sistema Industrial </h1>
       <label for="cpf" class="sr-only">CPF</label>
       <input type="number"  id="cpf" name="cpf" class="form-control" placeholder="cpf" required autofocus>
       <label for="inputSenha" class="sr-only">Senha</label>

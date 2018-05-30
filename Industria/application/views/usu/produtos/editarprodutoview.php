@@ -5,31 +5,17 @@
 <form action="<?= base_url('produtos/atualizar')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="codigo" value="<?= $produtos[0]->codigo?>">
     <div class="row form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-8">
             <label for="nome">Nome: </label>
             <input type="text" class="form-control" name="nome" value="<?= $produtos[0]->nome?>">
         </div>
     </div>
     <div class="row form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <label for="quantidad">Quantidade: </label>
             <input type="number" step="any" class="form-control" name="quantidade" value="<?= $produtos[0]->quantidade?>">
         </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-2">
-            <label for="custo">Preço de custo: </label>
-            <input type="number" step="any" class="form-control" name="custo" value="<?= $produtos[0]->preco_custo?>">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-2">
-            <label for="venda">Preço de venda: </label>
-            <input type="number" step="any" class="form-control" name="venda" value="<?= $produtos[0]->preco_venda?>">
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <label for="tipoproduto">Tipo de produto: </label>
             <select class="form-control" name="tipo">
                 <?php foreach ($tipoproduto as $row):?>
@@ -38,6 +24,17 @@
             </select>
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Salvar</button>
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <label for="custo">Preço de custo: </label>
+            <input type="number" step="any" class="form-control" name="custo" value="<?= $produtos[0]->preco_custo?>">
+        </div>
+        <div class="col-sm-4">
+            <label for="venda">Preço de venda: </label>
+            <input type="number" step="any" class="form-control" name="venda" value="<?= $produtos[0]->preco_venda?>">
+        </div>
+    </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
 </form>
 </div>
