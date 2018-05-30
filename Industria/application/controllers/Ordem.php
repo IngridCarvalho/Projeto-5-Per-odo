@@ -154,10 +154,10 @@ class Ordem extends CI_Controller{
         // }
         $info['custo_unitario'] = $this->input->post('custo');
         $info['codigo_item'] = $codigo_componente;
-        $info['numero_ordem'] = $codigo_produto;
+        $info['numero_ordem'] = $codigo_ordem;
         
         
-        $result = $this->bancomodel->insert('composicao',$info);
+        $result = $this->bancomodel->insert('itensordemproducao',$info);
         if($result){
             redirect('ordem/9');
         }else{

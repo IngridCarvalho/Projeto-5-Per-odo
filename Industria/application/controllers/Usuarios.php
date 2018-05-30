@@ -36,10 +36,10 @@ class Usuarios extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function editar($nome){
+    public function editar($codigo){
         $this->validar_sessao();
         $this->load->model('usuariosmodel','usuarios');
-        $dados['usuarios'] = $this->usuarios->get_usuarios($nome);
+        $dados['usuarios'] = $this->usuarios->get_usuarios($codigo);
         $dados['nivelusuarios']=$this->usuarios->get_nivel();
 
         $this->load->view('usu/includes/topo');

@@ -36,10 +36,10 @@ class Produtos extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function editar($nome){
+    public function editar($cpf){
         $this->validar_sessao();
         $this->load->model('produtosmodel','produtos');
-        $dados['produtos'] = $this->produtos->get_produtos($nome);
+        $dados['produtos'] = $this->produtos->get_produtos($cpf);
         $dados['tipoproduto']=$this->produtos->get_tipo();
 
         $this->load->view('usu/includes/topo');

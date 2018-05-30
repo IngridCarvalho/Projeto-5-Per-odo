@@ -43,7 +43,7 @@
                     <?php } ?>
                 <td>
                     <div style="float:right">
-                        <a href="<?= base_url('usuarios/editar/'.$row->nome)?>" class="btn btn-info">Editar</a>
+                        <a href="<?= base_url('usuarios/editar/'.$row->cpf)?>" class="btn btn-info">Editar</a>
                         <a href="<?= base_url('usuarios/deletar/'.$row->cpf)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o usuário?')">Excluir</a>
                     </div>
                 </td>  

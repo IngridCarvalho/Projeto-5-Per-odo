@@ -16,8 +16,8 @@ class Usuariosmodel extends CI_Model {
 		return $result;
 	}
         
-        public function get_usuarios($nome){
-            $this->db->where('nome',$nome);
+        public function get_usuarios($cpf){
+            $this->db->where('cpf',$cpf);
             $result = $this->db->get('usuarios')->result();
             return $result;
         }

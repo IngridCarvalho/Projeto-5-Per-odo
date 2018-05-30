@@ -15,8 +15,8 @@ class Produtosmodel extends CI_Model {
 		return $result;
 	}
         
-    public function get_produtos($nome){
-        $this->db->where('nome',$nome);
+    public function get_produtos($codigo){
+        $this->db->where('codigo',$codigo);
         $result = $this->db->get('produtos')->result();
         return $result;
     }
