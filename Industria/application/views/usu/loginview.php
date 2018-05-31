@@ -11,7 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?= base_url(); ?>dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css" type="text/css" media="all"> -->
     <!-- Custom styles for this template -->
     <link href="<?= base_url(); ?>dist/css/signin.css" rel="stylesheet">
   </head>
@@ -32,7 +32,7 @@
                 <?php } ?>
       <h1 class="h3 mb-3 font-weight-normal">Acesso ao Sistema Industrial </h1>
       <label for="cpf" class="sr-only">CPF</label>
-      <input type="number"  id="cpf" name="cpf" class="form-control" placeholder="cpf" required autofocus>
+      <input type="text"  id="cpf" name="cpf" class="form-control" placeholder="cpf" required autofocus>
       <label for="inputSenha" class="sr-only">Senha</label>
       <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
       <!--<div class="checkbox mb-3">
@@ -43,5 +43,14 @@
       <button class="btn btn-lg btn-primary btn-block" type="submit">Acessar</button>
       <p class="mt-5 mb-3 text-muted">&copy; <?php echo date("Y");?></p>
     </form>
+    
+    <!-- Scripts da Máscara -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="<?= base_url(); ?>dist/js/jquery.mask.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');
+      });
+    </script>
   </body>
 </html>

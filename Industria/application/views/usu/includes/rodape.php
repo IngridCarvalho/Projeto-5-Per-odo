@@ -7,6 +7,7 @@
     <!-- <script>window.jQuery || document.write('<script src="<?= base_url()?>dist/js/jquery-slim.min.js"><\/script>')</script> -->
     <!-- <script src="<?= base_url()?>dist/js/popper.min.js"></script> -->
     <script src="<?= base_url()?>dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
    
@@ -17,7 +18,16 @@
       feather.replace()
     </script>
 
-    
+    <!-- Máscaras -->
+    <script src="<?= base_url(); ?>dist/js/jquery.mask.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#cpf').mask('000.000.000-00');
+        $('.money').mask('#.##0,00', {reverse: true});
+      });
+    </script>
+
+    <!-- Data Tables -->
     <script>
       $(document).ready( function () {
         // $('#dataTable').dataTable();

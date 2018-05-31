@@ -21,7 +21,7 @@
                             <td><?= $row->codigo; ?></td>
                             <td><?= $row->nome; ?></td>
                             <td><?= $row->quantidade; ?></td>
-                            <td><?= $row->preco_custo; ?></td>
+                            <td><?= "R$ ". number_format($row->preco_custo,2,',','.'); ?></td>
                             <td>
                             <a style="float:right" href="<?= base_url('ordem/incluirprodutos/'.$codigo_ordem.'/'.$row ->codigo)?>" class="btn btn-success">incluir</a>
                             </td>  

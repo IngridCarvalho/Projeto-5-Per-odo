@@ -24,11 +24,11 @@
     <div class="row form-group">
         <div class="col-sm-4">
             <label for="custo">Preço de custo: </label>
-            <input type="number" step="any" class="form-control" name="custo">
+            <input type="text" class="form-control money" name="custo" placeholder="R$">
         </div>
         <div class="col-sm-4">
             <label for="venda">Preço de venda: </label>
-            <input type="number" step="any" class="form-control" name="venda">
+            <input type="text" class="form-control money" name="venda" placeholder="R$">
         </div>
     </div>
     <button type="submit" class="btn btn-success">Salvar</button>

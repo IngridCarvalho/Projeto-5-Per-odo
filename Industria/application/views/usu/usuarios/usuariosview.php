@@ -32,7 +32,7 @@
         <tbody>
             <?php foreach($usuarios as $row):?>
             <tr>
-                <td><?= $row->cpf; ?></td>
+                <td data-mask="000.000.000-00"><?= $row->cpf; ?></td>
                 <td><?= $row->nome; ?></td>
                 <?php if($row->fk_nivel == 1){?>
                     <td>Administrador</td>

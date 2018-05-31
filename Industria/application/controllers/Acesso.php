@@ -4,6 +4,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Acesso extends CI_Controller{
 
+    public function multiexplode($delimiters,$string) {
+   
+        $ready = str_replace($delimiters, $delimiters[0], $string);
+        $launch = explode($delimiters[0], $ready);
+        return  $launch;
+    }
+    
+
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
             redirect('acesso');
@@ -36,7 +44,7 @@ class Acesso extends CI_Controller{
     public function logar(){
         $this->load->model('acessomodel');
 
-        $cpf = $this->input->post('cpf');
+        $cpf = implode($this->multiexplode(array('.','-'),$this->input->post('cpf')));
         $senha = md5($this->input->post('senha'));
         $usuario = $this->acessomodel->logar($cpf,$senha);
 

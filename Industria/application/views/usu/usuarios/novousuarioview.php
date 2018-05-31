@@ -4,7 +4,7 @@
     <div class="row form-group">
         <div class="col-sm-2">
             <label for="cpf">CPF: </label>
-            <input type="number" class="form-control" name="cpf">
+            <input id="cpf" type="text" class="form-control" name="cpf">
         </div>
     </div>
     <div class="row form-group">

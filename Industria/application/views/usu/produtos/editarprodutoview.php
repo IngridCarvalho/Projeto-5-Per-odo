@@ -27,11 +27,11 @@
     <div class="row form-group">
         <div class="col-sm-4">
             <label for="custo">Preço de custo: </label>
-            <input type="number" step="any" class="form-control" name="custo" value="<?= $produtos[0]->preco_custo?>">
+            <input type="text" class="form-control money" name="custo" placeholder="R$" value="<?=  number_format($produtos[0]->preco_custo,2,',','.')?>">
         </div>
         <div class="col-sm-4">
             <label for="venda">Preço de venda: </label>
-            <input type="number" step="any" class="form-control" name="venda" value="<?= $produtos[0]->preco_venda?>">
+            <input type="text" class="form-control money" name="venda" placeholder="R$" value="<?= number_format($produtos[0]->preco_venda,2,',','.')?>">
         </div>
     </div>
         <button type="submit" class="btn btn-success">Salvar</button>

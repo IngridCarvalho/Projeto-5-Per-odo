@@ -11,6 +11,13 @@ class Produtos extends CI_Controller{
         return true;
     }
 
+    public function multiexplode($delimiters,$string) {
+   
+        $ready = str_replace($delimiters, $delimiters[0], $string);
+        $launch = explode($delimiters[0], $ready);
+        return  $launch;
+    }
+
     public function index($alert=null){
         $this->validar_sessao();
         $this->load->model('produtosmodel');
@@ -53,8 +60,8 @@ class Produtos extends CI_Controller{
         $this->load->model('bancomodel');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
-        $info['preco_custo'] = $this->input->post('custo');
-        $info['preco_venda'] = $this->input->post('venda');
+        $info['preco_custo'] = implode('.',explode(',',implode(explode('.',$this->input->post('custo')))));
+        $info['preco_venda'] = implode('.',explode(',',implode(explode('.',$this->input->post('venda')))));
         $info['tipo_produto'] = $this->input->post('tipo');
 
         $result = $this->bancomodel->insert('produtos',$info);
@@ -70,8 +77,8 @@ class Produtos extends CI_Controller{
         $this->load->model('bancomodel');
         $info['nome'] = $this->input->post('nome');
         $info['quantidade'] = $this->input->post('quantidade');
-        $info['preco_custo'] = $this->input->post('custo');
-        $info['preco_venda'] = $this->input->post('venda');
+        $info['preco_custo'] = implode('.',explode(',',implode(explode('.',$this->input->post('custo')))));
+        $info['preco_venda'] = implode('.',explode(',',implode(explode('.',$this->input->post('venda')))));
         $info['tipo_produto'] = $this->input->post('tipo');
 
         $codigo = $this->input->post('codigo');

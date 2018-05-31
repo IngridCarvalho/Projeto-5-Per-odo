@@ -3,6 +3,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuarios extends CI_Controller{
+
+    public function multiexplode($delimiters,$string) {
+   
+        $ready = str_replace($delimiters, $delimiters[0], $string);
+        $launch = explode($delimiters[0], $ready);
+        return  $launch;
+    }
+    
     
     public function validar_sessao(){
         if(!$this->session->userdata('LOGADO')){
@@ -51,7 +59,7 @@ class Usuarios extends CI_Controller{
     public function salvar(){
         $this->validar_sessao();
         $this->load->model('bancomodel');
-        $info['cpf'] = $this->input->post('cpf');
+        $info['cpf'] = implode($this->multiexplode(array('.','-'),$this->input->post('cpf')));
         $info['nome'] = $this->input->post('nome');
         $info['sobrenome'] = $this->input->post('sobrenome');
         $info['senha'] = md5($this->input->post('senha'));

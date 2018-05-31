@@ -28,7 +28,7 @@
                             <td><?= $row->codigo; ?></td>
                             <td><?= $row->nome; ?></td>
                             <td><?= $row->quantidade; ?></td>
-                            <td><?= $row->preco_custo; ?></td>
+                            <td><?= "R$ ".number_format($row->preco_custo,2,',','.'); ?></td>
                             <td>
                                 <div style="float:right">
                                     <a href="#" class="btn btn-info">Editar</a>
