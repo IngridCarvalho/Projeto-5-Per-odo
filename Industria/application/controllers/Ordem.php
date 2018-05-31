@@ -57,9 +57,9 @@ class Ordem extends CI_Controller{
 
         $id_ordem = $this->bancomodel->insert_id('ordemproducao',$info);
         if($result){
-            redirect('ordem/componentesincluidos/'.$id_ordem);
+            redirect('ordem/produtosincluidos/'.$id_ordem);
         }else{
-            redirect('ordem/componentesincluidos/'.$id_ordem);
+            redirect('ordem/produtosincluidos/'.$id_ordem);
         }
     }
 
@@ -109,33 +109,34 @@ class Ordem extends CI_Controller{
         }
     }
 
-    public function componentes($codigo){
+    public function produtos($codigo){
         $this->validar_sessao();
         $this->load->model('ordensmodel');
 
-        $dados['componentes'] = $this->ordensmodel->get_componentes($codigo);
-        $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);
+        $dados['produtos'] = $this->ordensmodel->get_produtos();
+    //    $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);
+        $dados['codigo_ordem'] = $codigo;
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
-        $this->load->view('usu/ordem/ordemcomponentesview',$dados);
+        $this->load->view('usu/ordem/ordemprodutosview',$dados);
         $this->load->view('usu/includes/rodape');
     }
 
-    public function incluircomponente($codigo_ordem,$codigo_componente){
+    public function incluirprodutos($codigo_ordem, $codigo_produto){
         $this->validar_sessao();
         $this->load->model('ordensmodel');
         
         $dados['ordem'] = $codigo_ordem;
-        $dados['componente'] =  $codigo_componente;   
+        $dados['produto'] =  $codigo_produto;   
 
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
-        $this->load->view('usu/ordem/quantidadecomponenteview',$dados);
+        $this->load->view('usu/ordem/quantidadeprodutoview',$dados);
         $this->load->view('usu/includes/rodape');
     }
 
-    public function incluir($codigo_ordem,$codigo_componente){
+    public function incluir($codigo_ordem,$codigo_produto){
         $this->validar_sessao();
         $this->load->model('bancomodel');
         $this->load->model('ordensmodel');
@@ -152,41 +153,41 @@ class Ordem extends CI_Controller{
         //     redirect('produto/8');
         // }
         $info['custo_unitario'] = $this->input->post('custo');
-        $info['codigo_item'] = $codigo_componente;
+        $info['codigo_item'] = $codigo_produto;
         $info['numero_ordem'] = $codigo_ordem;
         
         
         $result = $this->bancomodel->insert('itensordemproducao',$info);
         if($result){
-            redirect('ordem/9');
+            redirect('ordem/produtosincluidos/'.$codigo_ordem);
         }else{
-            redirect('ordem/10');
+            redirect('ordem/produtosincluidos/'.$codigo_ordem);
         }
 
     }
     
-    public function componentesincluidos($codigo){
+    public function produtosincluidos($codigo){
         $this->validar_sessao();
         $this->load->model('ordensmodel');
      
-        $dados['ordens'] = $this->ordensmodel-> get_componentes_incluidos($codigo);
+        $dados['ordens'] = $this->ordensmodel-> get_produtos_incluidos($codigo);
         $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);   
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
-        $this->load->view('usu/ordem/componentesincluidosview',$dados);
+        $this->load->view('usu/ordem/produtosincluidosview',$dados);
         $this->load->view('usu/includes/rodape');
     }
 
-    public function excluir_componente($codigo){
+    public function excluir_item($codigo){
         $this->validar_sessao();
         $this->load->model('bancomodel');
 
         $result = $this->bancomodel->delete('itensordemproducao',$codigo);
         if($result){
-            redirect('ordem/11');
+            redirect('ordem/produtosincluidos/'.$codigo);
         }else{
-            redirect('ordem/12');
+            redirect('ordem/produtosincluidos/'.$codigo);
         }
     }
 
@@ -209,13 +210,13 @@ class Ordem extends CI_Controller{
         else if ($alert == 8)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Por favor, tente novamente!';
         else if ($alert == 9)
-                    $str = 'success-Componente incluído com sucesso!';
+                    $str = 'success-Item incluído com sucesso!';
         else if ($alert == 10)
-                    $str = 'danger-Não foi possível incluir o componente. Por favor, tente novamente!';
+                    $str = 'danger-Não foi possível incluir o item. Por favor, tente novamente!';
         else if ($alert == 11)
-                    $str = 'success-Componente excluído com sucesso!';
+                    $str = 'success-Item excluído com sucesso!';
         else if ($alert == 12)
-                    $str = 'danger-Não foi possível excluir o componente. Por favor, tente novamente!';
+                    $str = 'danger-Não foi possível excluir o item. Por favor, tente novamente!';
         else
                     $str = null;
 		return $str;

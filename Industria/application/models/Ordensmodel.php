@@ -27,16 +27,17 @@ class Ordensmodel extends CI_Model {
         return $result;
     }
 
-    public function get_componentes(){
+    public function get_produtos(){
         $this->db->order_by('nome','CRESC');
+        $this->db->where('tipo_produto = 1');
         $produto = $this->db->get('produtos')->result();
         return $produto;
     }
 
-    public function get_componentes_incluidos($codigo){
+    public function get_produtos_incluidos($codigo){
         $this->db->order_by('produtos.codigo','CRESC');
         $this->db->join('itensordemproducao',' itensordemproducao.codigo_item = produtos.codigo','inner');
-        $this->db->where('itensordemproducao.codigo_item =', $codigo);
+        $this->db->where('itensordemproducao.numero_ordem =', $codigo);
         $produto = $this->db->get('produtos')->result();
         return $produto;
     }

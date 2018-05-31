@@ -10,7 +10,7 @@
                         <th>Custo</th>
                         <th>
                         <div style="float:right">
-                            <a href="<?= base_url('ordem/componentes/'.$ordem[0]->codigo)?>" class="btn btn-primary">Incluir Produto</a>
+                            <a href="<?= base_url('ordem/produtos/'.$ordem[0]->codigo)?>" class="btn btn-success">Incluir Produto</a>
                         </div>
                         </th>
                       
@@ -30,7 +30,10 @@
                             <td><?= $row->quantidade; ?></td>
                             <td><?= $row->preco_custo; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
+                                <div style="float:right">
+                                    <a href="#" class="btn btn-info">Editar</a>
+                                    <a href="<?= base_url('ordem/excluir_item/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja remover o item?')">Remover</a>
+                                </div>
                             </td>  
                         </tr>
                              
@@ -38,4 +41,6 @@
                 </tbody>
             </table>
        </div>
+       <br>
+       <a href="<?= base_url('ordem')?>" class="btn btn-success">Salvar Ordem</a>
 </div>

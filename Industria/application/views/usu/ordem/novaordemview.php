@@ -10,7 +10,9 @@ date_default_timezone_set('America/Sao_Paulo');
             <label for="descricao">Descrição: </label>
             <input type="text" class="form-control" name="descricao" required>
         </div>
-        <div class="col-sm-2">
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-4">
             <label for="dataInicio">Data de Início: </label>
             <input type="date" class="form-control" name="dataInicio" value="<?php echo date('Y-m-d'); ?>">
         </div>
