@@ -141,18 +141,8 @@ class Ordem extends CI_Controller{
         $this->load->model('bancomodel');
         $this->load->model('ordensmodel');
         
-        // $quantidade_componente = $this->produtosmodel->get_quantidade($codigo_componente);
-        $quantidade_ordem = $this->input->post('quantidade');
-        
-        // if($quantidade_ordem >= $quantidade_produto){
-            $info['quantidade_produzida'] = $quantidade_ordem;   
-            // $atualizar_estoque['quantidade'] = $quantidade_componente - $quantidade_produto;
-            // $this->bancomodel->update('produtos',$atualizar_estoque,$codigo_componente);
-        
-        // }else{
-        //     redirect('produto/8');
-        // }
-        $info['custo_unitario'] = $this->input->post('custo');
+        $info['quantidade_produzida'] = $this->input->post('quantidade');
+        $info['custo_unitario'] = $this->ordensmodel->custo_uni_composicao($codigo_produto);
         $info['codigo_item'] = $codigo_produto;
         $info['numero_ordem'] = $codigo_ordem;
         
@@ -170,7 +160,7 @@ class Ordem extends CI_Controller{
         $this->validar_sessao();
         $this->load->model('ordensmodel');
      
-        $dados['ordens'] = $this->ordensmodel-> get_produtos_incluidos($codigo);
+        $dados['produtos_ordem'] = $this->ordensmodel-> get_produtos_incluidos($codigo);
         $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);   
         
         $this->load->view('usu/includes/topo');

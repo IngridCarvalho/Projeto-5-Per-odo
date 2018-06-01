@@ -35,17 +35,28 @@ class Ordensmodel extends CI_Model {
     }
 
     public function get_produtos_incluidos($codigo){
-        $this->db->order_by('produtos.codigo','CRESC');
-        $this->db->join('itensordemproducao',' itensordemproducao.codigo_item = produtos.codigo','inner');
+        $this->db->select('produtos.nome');
+        $this->db->select('itensordemproducao.codigo');
+        $this->db->select('itensordemproducao.codigo_item');
+        $this->db->select('itensordemproducao.quantidade_produzida');
+        $this->db->select('itensordemproducao.custo_unitario');
+        $this->db->order_by('itensordemproducao.codigo_item','CRESC');
+        $this->db->join('produtos',' itensordemproducao.codigo_item = produtos.codigo','inner');
         $this->db->where('itensordemproducao.numero_ordem =', $codigo);
-        $produto = $this->db->get('produtos')->result();
-        return $produto;
+        $produtos = $this->db->get('itensordemproducao')->result();
+        return $produtos;
     }
-    public function get_quantidade($codigo){
-        $this->db->select('quantidade');
-        $this->db->where('codigo',$codigo);
-        $query = $this->db->get('produtos');
-        $result = $query->row();
-        return $result;
+
+    public function custo_uni_composicao($codigo_composicao){
+        $this->db->select('sum(composicao.quantidade_componente * produtos.preco_custo) as custo_componente');
+        $this->db->join('produtos', 'produtos.codigo = composicao.codigo_produto');
+        $this->db->where('composicao.codigo_composicao', $codigo_composicao);
+        $result = $this->db->get('composicao')->result_array();
+
+        foreach ($result as $key => $value) {
+            $custo_unitario = $value["custo_componente"];
+        }
+
+        return $custo_unitario;
     }
  }

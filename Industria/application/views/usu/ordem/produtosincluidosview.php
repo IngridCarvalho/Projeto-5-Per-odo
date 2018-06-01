@@ -1,10 +1,10 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="page-header">Informe os produtos da Ordem de Produção:</h1>
+    <h1 class="page-header">Produtos da Ordem de Produção:</h1>
     <div class="bs-example" data-example-id="striped-table">
             <table class="table table-striped" id="dataTable">
                 <thead>
                     <tr>
-                        <th>Código da Ordem</th>
+                        <th>Código do Produto</th>
                         <th>Nome</th>
                         <th>Quantidade</th>
                         <th>Custo</th>
@@ -17,18 +17,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($ordens as $row):?>
+                    <?php foreach($produtos_ordem as $row):?>
                    
                     <?php foreach($ordem as $row2):?>
                     <input type="hidden" name="cod" value="<?= $row2->codigo?>">
                     <?php endforeach ?>   
                         <tr>
-                        <input type="hidden" name="codigo" value="<?= $row->codigo?>">
+                      
                   
-                            <td><?= $row->codigo; ?></td>
+                            <td><?= $row->codigo_item; ?></td>
                             <td><?= $row->nome; ?></td>
-                            <td><?= $row->quantidade; ?></td>
-                            <td><?= "R$ ".number_format($row->preco_custo,2,',','.'); ?></td>
+                            <td><?= $row->quantidade_produzida; ?></td>
+                            <td><?= "R$ ".number_format($row->custo_unitario,2,',','.'); ?></td>
                             <td>
                                 <div style="float:right">
                                     <a href="#" class="btn btn-info">Editar</a>
