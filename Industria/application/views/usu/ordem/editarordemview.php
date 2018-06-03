@@ -5,11 +5,18 @@
 <form action="<?= base_url('ordem/atualizar')?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="codigo" value="<?= $ordens[0]->codigo?>">
     <div class="row form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-8">
             <label for="Descrição">Descrição: </label>
-            <textarea class="form-control" rows="3" name="descricao"><?= $ordens[0]->descricao; ?></textarea>
+            <input class="form-control" rows="3" name="descricao" value="<?= $ordens[0]->descricao; ?>"/>
         </div>   
-    </div>   
-    <button type="submit" class="btn btn-success">Salvar</button>
+    </div>  
+    <div class="row form-group">
+        <div class="col-sm-4">
+            <label for="dataInicio">Data de Início: </label>
+            <input type="date" class="form-control" name="dataInicio" value="<?php echo date('Y-m-d'); ?>">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Próximo</button>
+    <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a> 
 </form>
 </div>

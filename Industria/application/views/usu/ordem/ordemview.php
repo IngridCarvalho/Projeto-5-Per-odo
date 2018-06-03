@@ -1,5 +1,5 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="page-header">Ordem de Produção</h1>
+    <h1 class="page-header">Ordens de Produção</h1>
     <?php if(isset($alert)) {?>
         <div class="alert alert-<?php
             $a = explode('-', isset($alert) ? $alert : '');
@@ -45,18 +45,18 @@
                 <?php } ?>
                 <td>
                     <div style="float:right">
-                        <?php if($row->status == 1){ ?>
-<!--                            <a href="<?= base_url('ordem/produtos/'.$row->codigo)?>" class="btn btn-primary">Novo Componente</a>-->
-                            <a href="<?= base_url('ordem/produtosincluidos/'.$row->codigo)?>" class="btn btn-secondary">Ver Componentes</a>
+                        <?php if($row->status == 1){ ?> 
                             <a href="<?= base_url('ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
+                            <a href="<?= base_url('ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
+                            <a href="<?= base_url('ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
+                        <?php }else{?>
+                            <a href="<?= base_url('ordem/produtosincluidos/'.$row->codigo)?>" class="btn btn-secondary">Visualizar Itens</a>
                         <?php } ?>
-                        <a href="<?= base_url('ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
-                        <a href="<?= base_url('ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
                     </div>
                 </td>  
             </tr>
             <?php endforeach; ?>
-        </tbody>
+        </tbody>    
     </table>
     </div>
 </div>

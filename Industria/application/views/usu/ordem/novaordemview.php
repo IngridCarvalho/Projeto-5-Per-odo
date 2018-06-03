@@ -3,7 +3,7 @@ date_default_timezone_set('America/Sao_Paulo');
 ?>
 
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-<h1>Nova Ordem de Produção</h1>
+<h2>Cadastro de Ordem de Produção:</h2>
 <form action="<?= base_url('ordem/proximo')?>" method="post" enctype="multipart/form-data">
     <div class="row form-group">
         <div class="col-sm-8">

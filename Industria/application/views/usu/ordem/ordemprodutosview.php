@@ -1,5 +1,7 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <h1 class="page-header">Escolha de Produtos</h1>
+    <h1 class="page-header">Listagem de Produtos</h1>
+    <br>
+    <p class="info">Informe um produto para inserir na Ordem de Produção:</p>
     <div class="bs-example" data-example-id="striped-table">
             <table class="table table-striped" id="dataTable">
                 <thead>

@@ -72,9 +72,9 @@ class Ordem extends CI_Controller{
 
         $result = $this->bancomodel->update('ordemproducao',$info,$codigo);
         if($result){
-            redirect('ordem/5');
+            redirect('ordem/produtosincluidos/'.$codigo);
         }else{
-            redirect('ordem/6');
+            redirect('ordem/produtosincluidos/'.$codigo);
         }
         
     }
@@ -82,13 +82,63 @@ class Ordem extends CI_Controller{
 
     public function finalizar($codigo){
         $this->validar_sessao();
-        date_default_timezone_set('America/Sao_Paulo');
-        $this->load->model('bancomodel');
-        $info['data_finalizacao'] = Date("Y-m-d");
-        $info['status'] = 2;
+        $this->load->model('ordensmodel');
+     
+        $dados['produtos_ordem'] = $this->ordensmodel->get_produtos_incluidos($codigo);
+        $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);   
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/ordem/finalizarordemview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
 
-   //     $result = $this->bancomodel->insert('ordemproducao',$info);
-        $result = $this->bancomodel->update('ordemproducao',$info,$codigo);
+    public function finalizar_ordem($codigo_ordem){
+        $this->validar_sessao();
+        $this->load->model('ordensmodel');
+        $this->load->model('bancomodel');
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $ordem['data_finalizacao'] = Date("Y-m-d");
+        $ordem['status'] = 2;
+
+        //select que traz os códigos incluidos na ordem para inserção das quantidades produzidas informadas
+        $cod_produtos = $this->ordensmodel->get_cod_produtos_incluidos($codigo_ordem);
+
+        //foreach para rodar e pegar as quantidades digitadas e atualizar todos os itens da ordem
+        foreach ($cod_produtos as $key => $value) {
+
+            $codigo_item = $value['codigo_item'];
+            $codigo_item_ordem = $value['codigo'];
+            $custo_total = $value['custo_total'];
+            $qtd_produzida = $this->input->post($value['codigo_item']);
+            $qtd_prevista = $value['quantidade_prevista'];
+
+            $baixou_componentes = $this->baixa_estoque_componente($codigo_item, $qtd_prevista);
+
+            $item_ordem['quantidade_produzida'] = $qtd_produzida;
+            
+            //pega a quantidade atual do estoque das composições
+            $qtd_estoque = $this->ordensmodel->quantidade_estoque($codigo_item);
+
+            //calcula a quantidade do estoque da composição
+            $produto['quantidade'] = $qtd_estoque + $qtd_produzida;
+            
+            //atualiza o custo unitário do estoque e da ordem de produção
+            $novo_custo_unitario = $custo_total / $qtd_produzida;
+            $item_ordem['custo_unitario'] = $novo_custo_unitario;
+            $produto['preco_custo'] = $novo_custo_unitario;
+
+            //atualiza os dados no banco
+            $result1 = $this->bancomodel->update('produtos', $produto, $codigo_item);
+            $result2 = $this->bancomodel->update('itensordemproducao', $item_ordem, $codigo_item_ordem);
+
+            if($result1 == null || $result2 == null){
+                break;
+                redirect('ordem/8');
+            }
+        }
+        $result = $this->bancomodel->update('ordemproducao',$ordem,$codigo_ordem);
 
         if($result){
             redirect('ordem/7');
@@ -141,11 +191,19 @@ class Ordem extends CI_Controller{
         $this->load->model('bancomodel');
         $this->load->model('ordensmodel');
         
-        $info['quantidade_produzida'] = $this->input->post('quantidade');
-        $info['custo_unitario'] = $this->ordensmodel->custo_uni_composicao($codigo_produto);
+        $custo_unitario = $this->ordensmodel->custo_uni_composicao($codigo_produto);
+        $quantidade = $this->input->post('quantidade');
+        
+        if($custo_unitario){
+            $info['custo_unitario'] = $custo_unitario;
+        }else{
+            $info['custo_unitario'] = 0;
+        }
+        
+        $info['quantidade_prevista'] = $quantidade;
         $info['codigo_item'] = $codigo_produto;
         $info['numero_ordem'] = $codigo_ordem;
-        
+        $info['custo_total'] = $custo_unitario * $quantidade;
         
         $result = $this->bancomodel->insert('itensordemproducao',$info);
         if($result){
@@ -169,16 +227,34 @@ class Ordem extends CI_Controller{
         $this->load->view('usu/includes/rodape');
     }
 
-    public function excluir_item($codigo){
+    public function excluir_item($codigo_item, $ordem){
         $this->validar_sessao();
         $this->load->model('bancomodel');
 
-        $result = $this->bancomodel->delete('itensordemproducao',$codigo);
+        $result = $this->bancomodel->delete('itensordemproducao',$codigo_item);
         if($result){
-            redirect('ordem/produtosincluidos/'.$codigo);
+            redirect('ordem/produtosincluidos/'.$ordem);
         }else{
-            redirect('ordem/produtosincluidos/'.$codigo);
+            redirect('ordem/produtosincluidos/'.$ordem);
         }
+    }
+
+    public function baixa_estoque_componente($codigo_composicao, $qtd_prevista){
+        $this->validar_sessao();
+        $this->load->model('ordensmodel');
+        $this->load->model('bancomodel');
+
+        $componentes = $this->ordensmodel->componentes($codigo_composicao);
+
+        foreach ($componentes as $key => $value) {
+            $qtd_estoque = $this->ordensmodel->quantidade_estoque($value['codigo_produto']);
+            $componente['quantidade'] = $qtd_estoque - ($value['quantidade_componente'] * $qtd_prevista);
+            $result = $this->bancomodel->update('produtos', $componente, $value['codigo_produto']);
+            if($result == null){
+                break;
+            }
+        }
+        return $result;
     }
 
     public function msg($alert) {
@@ -196,7 +272,7 @@ class Ordem extends CI_Controller{
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar a ordem de produção. Por favor, tente novamente!';
         else if ($alert == 7)
-                    $str = 'success-Ordem de produção finalizado com sucesso!';
+                    $str = 'success-Ordem de produção finalizada com sucesso!';
         else if ($alert == 8)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Por favor, tente novamente!';
         else if ($alert == 9)
