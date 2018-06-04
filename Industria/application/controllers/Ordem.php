@@ -245,11 +245,15 @@ class Ordem extends CI_Controller{
         $this->load->model('bancomodel');
 
         $componentes = $this->ordensmodel->componentes($codigo_composicao);
-
+       
         foreach ($componentes as $key => $value) {
             $qtd_estoque = $this->ordensmodel->quantidade_estoque($value['codigo_produto']);
+            if(($qtd_estoque - ($value['quantidade_componente'] * $qtd_prevista)) < 0){
+                redirect('ordem/13');
+            }else{
             $componente['quantidade'] = $qtd_estoque - ($value['quantidade_componente'] * $qtd_prevista);
             $result = $this->bancomodel->update('produtos', $componente, $value['codigo_produto']);
+            }
             if($result == null){
                 break;
             }
@@ -283,6 +287,8 @@ class Ordem extends CI_Controller{
                     $str = 'success-Item excluído com sucesso!';
         else if ($alert == 12)
                     $str = 'danger-Não foi possível excluir o item. Por favor, tente novamente!';
+        else if ($alert == 13)
+                    $str = 'danger-Não foi possível finalizar a ordem de produção. Produto insuficiente no estoque!';
         else
                     $str = null;
 		return $str;

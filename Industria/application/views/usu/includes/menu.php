@@ -25,10 +25,12 @@
             </a>
           </li>
           <li class="nav-item">
+          <?php if($this->session->userdata('fk_nivel') != 3){?>
             <a class="nav-link" href="<?= base_url('ordem')?>">
               <span data-feather="file"></span>
               Ordens de Produção
             </a>
+          <?php } ?>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('produtos')?>">
@@ -37,10 +39,12 @@
             </a>
           </li>
           <li class="nav-item">
+          <?php if($this->session->userdata('fk_nivel') == 1){?>
             <a class="nav-link" href="<?= base_url('relatorios')?>">
               <span data-feather="bar-chart-2"></span>
               Relatórios
             </a>
+          <?php } ?>
           </li>
          
           <li class="nav-item">

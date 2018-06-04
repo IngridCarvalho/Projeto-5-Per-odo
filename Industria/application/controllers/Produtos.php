@@ -102,6 +102,15 @@ class Produtos extends CI_Controller{
         }else{
             redirect('produtos/4');
         }
+
+        // $this->load->model('produtosmodel');
+
+        // $result = $this->produtosmodel->delete_all('produtos','composicao',$codigo);
+        // if($result){
+        //         redirect('produtos/3');
+        //     }else{
+        //         redirect('produtos/4');
+        //     }
     }
 
     public function componentes($codigo){

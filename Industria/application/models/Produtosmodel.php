@@ -90,6 +90,15 @@ class Produtosmodel extends CI_Model {
 	$result = $this->db->delete($tabela);
 	return $result;
     }
+
+    // public function delete_all($produto,$composicao,$codigo){
+    //     $tabelas = array('composicao','produtos');
+        
+    //         $this->db->where('composicao.codigo_composicao',$codigo);
+    //         $this->db->where('produto.codigo',$codigo);  
+    //         return $this->db->delete($tabelas);  
+    
+    // }
   
         
 	

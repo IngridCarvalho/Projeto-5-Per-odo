@@ -9,7 +9,7 @@ class Relatoriosmodel extends CI_Model {
         $this->db->select('tmp_custo.nome');
         $this->db->select('tmp_custo.quantidade');
         $this->db->select('tmp_custo.custo_atual');
-        $this->db->select('sum(tmp_custo.custo_total/tmp_custo.quantidade) as custo_medio,');
+        $this->db->select('sum(tmp_custo.custo_total/tmp_custo.quantidade) as custo_medio');
         $this->db->select('tmp_custo.custo_total');
         $result = $this->db->get('(select
         i.codigo_item as codigo,
@@ -22,6 +22,7 @@ class Relatoriosmodel extends CI_Model {
         join ordemproducao op on i.numero_ordem = op.codigo
         where op.data_finalizacao >= "'.$data_inicio.'"
         and op.data_finalizacao <= "'.$data_fim.'"
+        and op.status = 2
         group by 1, 2) as tmp_custo
         group by 1, 2, 3, 4')->result();
         return $result;
