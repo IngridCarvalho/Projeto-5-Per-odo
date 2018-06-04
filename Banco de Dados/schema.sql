@@ -63,19 +63,21 @@ FOREIGN KEY (tipo_produto) REFERENCES tipoproduto(codigo);
 
 ALTER TABLE composicao 
 ADD CONSTRAINT codigo_produto_fk
-FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo);
+FOREIGN KEY (codigo_produto) REFERENCES produtos(codigo)
 
 ALTER TABLE composicao 
 ADD CONSTRAINT codigo_composicao_fk
-FOREIGN KEY (codigo_composicao) REFERENCES produtos(codigo);
+FOREIGN KEY (codigo_composicao) REFERENCES produtos(codigo)
 
 ALTER TABLE itensordemproducao
 ADD CONSTRAINT codigo_ordem_fk
-FOREIGN KEY (numero_ordem) REFERENCES ordemproducao(codigo);
+FOREIGN KEY (numero_ordem) REFERENCES ordemproducao(codigo)
+ON DELETE CASCADE;
 
 ALTER TABLE itensordemproducao 
 ADD CONSTRAINT codigo_item_fk
-FOREIGN KEY (codigo_item) REFERENCES produtos(codigo);
+FOREIGN KEY (codigo_item) REFERENCES produtos(codigo)
+ON DELETE CASCADE;
 
 ALTER TABLE ordemproducao
 ADD CONSTRAINT status_fk
@@ -90,3 +92,4 @@ INSERT INTO tipoproduto (codigo, descricao) VALUES (2, 'Componente');
 
 INSERT INTO status_ordem (codigo, status) VALUES (1, 'Pendente');
 INSERT INTO status_ordem (codigo, status) VALUES (2, 'Finalizado');
+

@@ -53,7 +53,10 @@ $route['acesso'] = 'acesso/login';
 $route['acesso/(:num)'] = 'acesso/login/$1';
 $route['usuarios/(:num)'] = 'usuarios/index/$1';
 $route['produtos/(:num)'] = 'produtos/index/$1';
+$route['produtos/componentesincluidos/(:num)/(:num)'] = 'produtos/componentesincluidos/$1/$2';
 $route['ordem/(:num)'] = 'ordem/index/$1';
+$route['ordem/produtosincluidos/(:num)/(:num)'] = 'ordem/produtosincluidos/$1/$2';
+$route['relatorios/(:num)'] = 'relatorios/index/$1';
 
 $route['default_controller'] = 'acesso/login';
 $route['404_override'] = '';

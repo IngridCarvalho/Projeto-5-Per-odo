@@ -1,6 +1,16 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="page-header">Relatório de Custo dos Itens Produzidos</h1>
-    </div>
+ <?php if(isset($alert)) {?>
+        <div class="alert alert-<?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[0];
+        ?>">
+        <button type="button" class="close" data-dismiss="alert-">×</button>
+        <?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[1];
+        ?>
+        </div>
+    <?php }?>
     <form action="#" method="post" enctype="multipart/form-data">
         <div class="row form-group">
             <div class="col-sm-3">
@@ -41,5 +51,4 @@
         <?php endforeach ?>
         </tbody>
     </table>
-    </div>
-</div>
+</div>  

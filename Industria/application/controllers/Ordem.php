@@ -207,19 +207,23 @@ class Ordem extends CI_Controller{
         
         $result = $this->bancomodel->insert('itensordemproducao',$info);
         if($result){
-            redirect('ordem/produtosincluidos/'.$codigo_ordem);
+            redirect('ordem/produtosincluidos/'.$codigo_ordem.'/9');
         }else{
-            redirect('ordem/produtosincluidos/'.$codigo_ordem);
+            redirect('ordem/produtosincluidos/'.$codigo_ordem.'/10');
         }
 
     }
     
-    public function produtosincluidos($codigo){
+    public function produtosincluidos($codigo,$alert=null){
         $this->validar_sessao();
         $this->load->model('ordensmodel');
      
         $dados['produtos_ordem'] = $this->ordensmodel-> get_produtos_incluidos($codigo);
         $dados['ordem'] = $this->ordensmodel->get_codigo($codigo);   
+        
+         if($alert != null)
+            $dados['alert'] = $this->msg($alert);
+     
         
         $this->load->view('usu/includes/topo');
         $this->load->view('usu/includes/menu');
@@ -233,9 +237,9 @@ class Ordem extends CI_Controller{
 
         $result = $this->bancomodel->delete('itensordemproducao',$codigo_item);
         if($result){
-            redirect('ordem/produtosincluidos/'.$ordem);
+            redirect('ordem/produtosincluidos/'.$ordem.'/11');
         }else{
-            redirect('ordem/produtosincluidos/'.$ordem);
+            redirect('ordem/produtosincluidos/'.$ordem.'/12');
         }
     }
 
@@ -268,28 +272,28 @@ class Ordem extends CI_Controller{
 		else if ($alert == 2)
                     $str = 'danger-Não foi possível cadastrar a ordem de produção. Por favor, tente novamente!';
 		else if ($alert == 3)
-                    $str = 'success- Ordem de produção removida com sucesso!';
+                    $str = 'success- Ordem de produção excluída com sucesso!';
 		else if ($alert == 4)
-                    $str = 'danger-Não foi possível remover a ordem de produção. Por favor, tente novamente!';
+                    $str = 'danger-Não foi possível excluir a ordem de produção. Por favor, tente novamente!';
 		else if ($alert == 5)
                     $str = 'success- Ordem de produção atualizada com sucesso!';
 		else if ($alert == 6)
                     $str = 'danger-Não foi possível atualizar a ordem de produção. Por favor, tente novamente!';
-        else if ($alert == 7)
+                else if ($alert == 7)
                     $str = 'success-Ordem de produção finalizada com sucesso!';
-        else if ($alert == 8)
+                else if ($alert == 8)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Por favor, tente novamente!';
-        else if ($alert == 9)
-                    $str = 'success-Item incluído com sucesso!';
-        else if ($alert == 10)
-                    $str = 'danger-Não foi possível incluir o item. Por favor, tente novamente!';
-        else if ($alert == 11)
-                    $str = 'success-Item excluído com sucesso!';
-        else if ($alert == 12)
-                    $str = 'danger-Não foi possível excluir o item. Por favor, tente novamente!';
-        else if ($alert == 13)
+                else if ($alert == 9)
+                    $str = 'success-Produto incluído com sucesso!';
+                else if ($alert == 10)
+                    $str = 'danger-Não foi possível incluir o produto. Por favor, tente novamente!';
+                else if ($alert == 11)
+                    $str = 'success-Produto removido com sucesso!';
+                else if ($alert == 12)
+                    $str = 'danger-Não foi possível remover o produto. Por favor, tente novamente!';
+                else if ($alert == 13)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Produto insuficiente no estoque!';
-        else
+                else
                     $str = null;
 		return $str;
 	}

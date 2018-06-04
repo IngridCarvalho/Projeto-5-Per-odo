@@ -1,5 +1,17 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <h1 class="page-header">Componentes: <?= $composicao[0]->nome ?></h1>
+     <?php if(isset($alert)) {?>
+        <div class="alert alert-<?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[0];
+        ?>">
+        <button type="button" class="close" data-dismiss="alert-">×</button>
+        <?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[1];
+        ?>
+        </div>
+    <?php }?>
     <div class="bs-example" data-example-id="striped-table">
             <table class="table table-striped" id="dataTable">
                 <thead>

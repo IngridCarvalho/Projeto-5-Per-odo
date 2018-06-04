@@ -1,5 +1,17 @@
 <div class=" justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <h2 class="page-header">Produtos da Ordem de Produção:</h2>
+    <?php if(isset($alert)) {?>
+        <div class="alert alert-<?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[0];
+            ?>" data-toggle="alert">
+        <button class="close" data-dismiss="alert">×</button>
+        <?php
+            $a = explode('-', isset($alert) ? $alert : '');
+            echo $a[1];
+        ?>
+        </div>
+    <?php }?>
     <div class="bs-example" data-example-id="striped-table">
             <table class="table table-striped" id="dataTable">
                 <thead>
@@ -52,7 +64,7 @@
        </div>
        <br>
        <?php if($ordem[0]->status != '2'){?>
-       <a href="<?= base_url('ordem')?>" class="btn btn-success">Salvar Ordem</a>
+       <a href="<?= base_url('ordem/1')?>" class="btn btn-success">Salvar Ordem</a>
        <?php } ?> 
        <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
 </div>
