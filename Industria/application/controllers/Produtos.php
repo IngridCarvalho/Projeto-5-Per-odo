@@ -185,6 +185,29 @@ class Produtos extends CI_Controller{
         $this->load->view('usu/includes/rodape');
             
     }
+    
+    public function editar_componente($componente, $composicao){
+        $this->validar_sessao();
+        $this->load->model('produtosmodel');
+        
+        $dados['componente'] = $this->produtosmodel->get_qtd_componente($componente, $composicao);
+              
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/produtos/editarcomponenteview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+    
+    public function atualizar_componente($componente, $composicao){
+        $this->validar_sessao();
+        $this->load->model('bancomodel');
+        $this->load->model('produtosmodel');
+        
+        $dados['quantidade_componente'] = $this->input->post('quantidade');
+        
+        $result = $this->bancomodel->update_2('composicao', $dados, $composicao, $componente);
+        exit(var_dump($result));
+    }
 
     public function excluir_componente($codigo, $codigo_composicao){
         $this->validar_sessao();

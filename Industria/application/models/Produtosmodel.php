@@ -61,6 +61,12 @@ class Produtosmodel extends CI_Model {
         return $result;
     }
     
+    public function get_qtd_componente($composicao, $componente){
+        $this->db->where('codigo_composicao = ', $composicao, ' and codigo_produto = ', $componente);
+        $result = $this->db->get('composicao')->result();
+        return $result;
+    }
+    
     public function lista_componentes($codigo){
         $this->db->select('composicao.codigo_produto');
         $this->db->where('composicao.codigo_composicao =', $codigo);

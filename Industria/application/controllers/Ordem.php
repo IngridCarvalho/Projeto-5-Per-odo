@@ -230,6 +230,50 @@ class Ordem extends CI_Controller{
         $this->load->view('usu/ordem/produtosincluidosview',$dados);
         $this->load->view('usu/includes/rodape');
     }
+    
+    public function editar_item($codigo_item, $ordem){
+        $this->validar_sessao();
+        $this->load->model('ordensmodel');
+        
+        $dados['item'] = $this->ordensmodel->get_produto_incluido($codigo_item, $ordem);
+        $dados['ordem'] = $ordem;
+        
+        $this->load->view('usu/includes/topo');
+        $this->load->view('usu/includes/menu');
+        $this->load->view('usu/ordem/editarquantidadeprodutoview',$dados);
+        $this->load->view('usu/includes/rodape');
+    }
+    
+    public function atualizar_item($codigo_item, $ordem){
+        $this->validar_sessao();
+        $this->load->model('bancomodel');
+        $this->load->model('ordensmodel');
+        
+        $dados = $this->ordensmodel->get_produto_incluido($codigo_item, $ordem);
+               
+        $custo_unitario = $this->ordensmodel->custo_uni_composicao($codigo_item);
+        $quantidade = $this->input->post('quantidade');
+        
+        if($custo_unitario){
+            $info['custo_unitario'] = $custo_unitario;
+        }else{
+            $info['custo_unitario'] = 0;
+        }
+        
+        $info['quantidade_prevista'] = $quantidade;
+        $info['codigo_item'] = $codigo_item;
+        $info['numero_ordem'] = $ordem;
+        $info['custo_total'] = $custo_unitario * $quantidade;
+        
+        $result = $this->bancomodel->update('itensordemproducao',$info, $dados[0]->codigo);
+        
+        if($result){
+            redirect('ordem/produtosincluidos/'.$ordem.'/14');
+        }else{
+            redirect('ordem/produtosincluidos/'.$ordem.'/15');
+        }
+        
+    }
 
     public function excluir_item($codigo_item, $ordem){
         $this->validar_sessao();
@@ -289,6 +333,10 @@ class Ordem extends CI_Controller{
                     $str = 'danger-Não foi possível remover o produto. Por favor, tente novamente!';
                 else if ($alert == 13)
                     $str = 'danger-Não foi possível finalizar a ordem de produção. Produto insuficiente no estoque!';
+                else if ($alert == 14)
+                    $str = 'success-Produto alterado com sucesso!';
+                else if ($alert == 15)
+                    $str = 'danger-Não foi possível alterar o produto. Por favor, tente novamente!';
                 else
                     $str = null;
 		return $str;

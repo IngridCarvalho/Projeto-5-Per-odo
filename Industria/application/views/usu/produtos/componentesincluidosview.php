@@ -40,7 +40,10 @@
                             <td><?= $row->nome; ?></td>
                             <td><?= $row->quantidade_componente; ?></td>
                             <td>
-                            <a style="float:right" href="<?= base_url('produtos/excluir_componente/'.$row->codigo_produto.'/'.$composicao[0]->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
+                                <div style="float:right">
+                                    <a href="<?= base_url('produtos/editar_componente/'.$composicao[0]->codigo.'/'.$row->codigo_produto)?>" class="btn btn-info">Editar</a>
+                                    <a href="<?= base_url('produtos/excluir_componente/'.$row->codigo_produto.'/'.$composicao[0]->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar o componente?')">excluir</a>
+                                </div>
                             </td>  
                         </tr>
                              

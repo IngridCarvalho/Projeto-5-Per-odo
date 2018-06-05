@@ -51,7 +51,7 @@
                             <?php if($ordem[0]->status != '2'){?>
                             <td>
                                 <div style="float:right">
-                                    <a href="#" class="btn btn-info">Editar</a>
+                                    <a href="<?= base_url('ordem/editar_item/'.$row->codigo.'/'.$ordem[0]->codigo)?>" class="btn btn-info">Editar</a>
                                     <a href="<?= base_url('ordem/excluir_item/'.$row->codigo.'/'.$ordem[0]->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja remover o item?')">Remover</a>
                                 </div>
                             </td> 

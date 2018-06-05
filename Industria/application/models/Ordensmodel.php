@@ -58,6 +58,12 @@ class Ordensmodel extends CI_Model {
         $codigos = $this->db->get('itensordemproducao')->result_array();
         return $codigos;
     }
+    
+    public function get_produto_incluido($codigo_composicao, $codigo_ordem){
+        $this->db->where('numero_ordem = ', $codigo_ordem, 'and codigo_item = ', $codigo_composicao);
+        $produto = $this->db->get('itensordemproducao')->result();
+        return $produto;        
+    }
 
     public function custo_uni_composicao($codigo_composicao){
         $this->db->select('sum(composicao.quantidade_componente * produtos.preco_custo) as custo_componente');

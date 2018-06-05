@@ -14,6 +14,12 @@ class Bancomodel extends CI_Model{
 	$result = $this->db->update($tabela, $data);
 	return $result;
     }
+    
+    public function update_2($tabela, $data, $composicao, $codigo) {
+        $this->db->where('codigo_composicao = ', $composicao, ' and codigo_produto = ', $codigo);
+	$result = $this->db->update($tabela, $data);
+	return $result;
+    }
 	
     public function delete($tabela, $codigo) {
         $this->db->where('codigo', $codigo);
