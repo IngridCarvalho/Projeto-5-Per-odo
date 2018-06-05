@@ -206,7 +206,11 @@ class Produtos extends CI_Controller{
         $dados['quantidade_componente'] = $this->input->post('quantidade');
         
         $result = $this->bancomodel->update_2('composicao', $dados, $composicao, $componente);
-        exit(var_dump($result));
+        if($result){
+            redirect('produtos/componentesincluidos/'.$composicao.'/11');
+        }else{
+            redirect('produtos/componentesincluidos/'.$composicao.'/12');
+        }
     }
 
     public function excluir_componente($codigo, $codigo_composicao){
@@ -245,6 +249,10 @@ class Produtos extends CI_Controller{
                     $str = 'success- Componente excluído com sucesso!';
                 else if ($alert == 10)
                     $str = 'danger-Não foi possível excluir o componente. Por favor, tente novamente!';
+                    else if ($alert == 11)
+                    $str = 'success- Componente editado com sucesso!';
+                else if ($alert == 12)
+                    $str = 'danger-Não foi possível editar o componente. Por favor, tente novamente!';
                 else
                     $str = null;
 		return $str;
