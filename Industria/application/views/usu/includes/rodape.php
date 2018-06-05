@@ -10,7 +10,7 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
@@ -58,5 +58,8 @@
         }); 
       });
     </script>
+
+    <script>$('.alert').alert()
+          </script>
   </body>
 </html>

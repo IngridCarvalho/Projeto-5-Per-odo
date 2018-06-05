@@ -5,7 +5,7 @@
             $a = explode('-', isset($alert) ? $alert : '');
             echo $a[0];
         ?>">
-        <button type="button" class="close" data-dismiss="alert-">×</button>
+        <button type="button" class="close" data-dismiss="alert">×</button>
         <?php
             $a = explode('-', isset($alert) ? $alert : '');
             echo $a[1];

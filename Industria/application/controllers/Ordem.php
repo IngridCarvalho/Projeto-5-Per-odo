@@ -252,12 +252,8 @@ class Ordem extends CI_Controller{
        
         foreach ($componentes as $key => $value) {
             $qtd_estoque = $this->ordensmodel->quantidade_estoque($value['codigo_produto']);
-            if(($qtd_estoque - ($value['quantidade_componente'] * $qtd_prevista)) < 0){
-                redirect('ordem/13');
-            }else{
             $componente['quantidade'] = $qtd_estoque - ($value['quantidade_componente'] * $qtd_prevista);
             $result = $this->bancomodel->update('produtos', $componente, $value['codigo_produto']);
-            }
             if($result == null){
                 break;
             }
