@@ -46,7 +46,9 @@
                 <td>
                     <div style="float:right">
                         <?php if($row->status == 1){ ?> 
-                            <a href="<?= base_url('ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
+                            <?php if($this->session->userdata('fk_nivel') != 3){ ?> 
+                                <a href="<?= base_url('ordem/finalizar/'.$row->codigo)?>" class="btn btn-success" onclick="return confirm('Deseja finalizar a ordem de produção?')">Finalizar</a>
+                            <?php }?>
                             <a href="<?= base_url('ordem/editar/'.$row->codigo)?>" class="btn btn-info">Editar</a>
                             <a href="<?= base_url('ordem/deletar/'.$row->codigo)?>" class="btn btn-danger" onclick="return confirm('Deseja apagar a ordem de produção?')">Excluir</a>
                         <?php }else{?>

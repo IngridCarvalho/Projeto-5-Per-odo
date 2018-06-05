@@ -25,7 +25,13 @@
             </a>
           </li>
           <li class="nav-item">
-          <?php if($this->session->userdata('fk_nivel') != 3){?>
+            <a class="nav-link" href="<?= base_url('produtos')?>">
+              <span data-feather="shopping-cart"></span>
+              Produtos
+            </a>
+          </li>
+          <li class="nav-item">
+          <?php if($this->session->userdata('fk_nivel')){?>
             <a class="nav-link" href="<?= base_url('ordem')?>">
               <span data-feather="file"></span>
               Ordens de Produção
@@ -33,13 +39,7 @@
           <?php } ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('produtos')?>">
-              <span data-feather="shopping-cart"></span>
-              Produtos
-            </a>
-          </li>
-          <li class="nav-item">
-          <?php if($this->session->userdata('fk_nivel') == 1){?>
+          <?php if($this->session->userdata('fk_nivel') != 3){?>
             <a class="nav-link" href="<?= base_url('relatorios')?>">
               <span data-feather="bar-chart-2"></span>
               Relatórios
@@ -56,7 +56,7 @@
           <?php }?>  
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<?= base_url('/manual/manual.pdf')?>" target="_blank">
               <span data-feather="layers"></span>
               Manual
             </a>
