@@ -30,6 +30,7 @@
             </table>
             <br>
             <button type="submit" class="btn btn-success">Finalizar Ordem</button>
+            <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
     </form>
     </div>
 </div>

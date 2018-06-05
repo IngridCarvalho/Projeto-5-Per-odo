@@ -36,6 +36,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
     <button type="reset" class="btn btn-info" onclick="return confirm('Deseja limpar o formulário de cadastro?')">Limpar</button>
 </form>
 </div>

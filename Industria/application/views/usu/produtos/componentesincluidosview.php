@@ -47,5 +47,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+           <a href="javascript:window.history.go(-1);"><input  class="btn btn-info" type="button" value="Voltar"></a>
+
        </div>
 </div>
