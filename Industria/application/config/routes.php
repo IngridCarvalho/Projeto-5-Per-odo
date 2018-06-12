@@ -59,5 +59,6 @@ $route['ordem/produtosincluidos/(:num)/(:num)'] = 'ordem/produtosincluidos/$1/$2
 $route['relatorios/(:num)'] = 'relatorios/index/$1';
 
 $route['default_controller'] = 'acesso/login';
+//  $route['default_controller'] = 'testes';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
