@@ -37,8 +37,9 @@ class Acesso extends CI_Controller{
         $dados = null;
         if($alert != null){
             $dados['alert'] = $this->msg($alert);
-        }
+        }if (!is_cli()){
         $this->load->view('usu/loginview',$dados);
+        }
     }
 
     public function logar(){
