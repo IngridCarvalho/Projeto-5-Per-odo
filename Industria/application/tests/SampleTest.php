@@ -15,7 +15,7 @@ class SampleTest extends PHPUnit_Framework_TestCase
         $this->CI->load->model('testemodel');
         
         $cpf = '09365640679';
-        $senha = md5('br280190');
+        $senha = md5('br28019');
         
        $this->assertTrue($this->CI->testemodel->logar($cpf,$senha));
 
