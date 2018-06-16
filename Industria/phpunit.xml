@@ -2,10 +2,10 @@
 
 <phpunit
     colors="true"
-    bootstrap="./application/tests/Bootstrap.php">
+    bootstrap="tests/Bootstrap.php">
     <testsuites>
         <testsuite name="CITools Test Suite">
-            <directory>./application/tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>  
     <filter>

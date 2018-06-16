@@ -20,7 +20,7 @@ if( !defined('DS')){
  * CODEIGNITER PATHS DEFINITIONS
  *---------------------------------------------------------------
  */
-$system_path = '../../system';
+$system_path = '../system';
 $application_folder = '../application';
 $view_folder = '';
 /*
