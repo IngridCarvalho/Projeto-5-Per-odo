@@ -2,7 +2,7 @@
 <phpunit bootstrap="tests/Bootstrap.php">
     <testsuites>
 		<testsuite name="TestSuite">
-			<directory>./tests</directory>
+			<directory>./tests/</directory>
 		</testsuite>
 	</testsuites>
 	<php>
@@ -12,7 +12,7 @@
 	<filter>
 		<blacklist>
 			<directory suffix=".php">./system/</directory>
-			<!--directory suffix=".php">application/libraries</directory-->
+			directory suffix=".php">application/libraries</directory
 		</blacklist>
 	</filter>
 </phpunit>
