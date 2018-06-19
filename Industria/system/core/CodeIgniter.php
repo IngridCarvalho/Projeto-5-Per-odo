@@ -546,10 +546,7 @@ if ( ! is_php('5.4'))
  *  Send the final rendered output to the browser
  * ------------------------------------------------------
  */
-	if ($EXT->call_hook('display_override') === FALSE)
-	{
-		$OUT->_display();
-	}
+if ($EXT->call_hook('display_override') === FALSE && !defined('PHPUNIT_TEST'))
 
 /*
  * ------------------------------------------------------
