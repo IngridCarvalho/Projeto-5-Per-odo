@@ -23,7 +23,9 @@ before_install:
   - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
   - cp -r application/* CodeIgniter-$CI_VERSION/application/
   - cp -r system/* CodeIgniter-$CI_VERSION/system/
-  - mysqli -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade
+  - sudo service mysql restart
 
 # install this project on top of it
 install:
