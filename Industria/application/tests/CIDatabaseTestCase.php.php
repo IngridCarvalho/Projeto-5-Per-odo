@@ -69,7 +69,7 @@ abstract class CIDatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
     {
         if ($this->conn === null) {
             if (self::$pdo == null) {
-            	$dsn = $this->CI->db->dbdriver.':dbname='.$this->CI->db->database.':host='.$this->CI->db->hostname;
+            	$dsn = $this->CI->db->dbdriver.':dbname='.$this->CI->db->database.';host='.$this->CI->db->hostname;
             	if ($this->CI->db->dsn) {
             		$dsn = $this->CI->db->dsn;
             	}
