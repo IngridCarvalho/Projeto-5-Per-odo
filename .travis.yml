@@ -8,11 +8,11 @@ php:
   services:
     - mysqli
 
-  test:
-    adapter: mysqli
-    database: industria
-    username: root
-    encoding: utf8
+  # test:
+  #   adapter: mysqli
+  #   database: industria
+  #   username: root
+  #   encoding: utf8
 
 env:
   - CI_VERSION=3.0.0
