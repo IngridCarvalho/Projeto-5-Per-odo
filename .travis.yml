@@ -23,7 +23,7 @@ before_install:
   - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
   - cp -r application/* CodeIgniter-$CI_VERSION/application/
   - cp -r system/* CodeIgniter-$CI_VERSION/system/
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mysqli -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 # install this project on top of it
 install:
