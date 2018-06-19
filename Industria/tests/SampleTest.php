@@ -7,6 +7,7 @@ class SampleTest extends PHPUnit_Framework_TestCase
     public function __construct()
     {
         // Assign the CodeIgniter super-object
+        parent::__construct();
         $this->CI = &get_instance();
     }
 
