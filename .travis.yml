@@ -10,8 +10,8 @@ env:
 
 # install vanilla CI before anything
 before_install:
-  - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
   - cd Industria
+  - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
   - cp -r application/* CodeIgniter-$CI_VERSION/application/
   - cp -r system/* CodeIgniter-$CI_VERSION/system/
 
@@ -25,4 +25,4 @@ install:
 # run multiple test commands
 script:
   - phpunit                  #default test command
-# - phpunit -c phpunit.xml   #custom test command to make sure CLI args don't break the test
+- phpunit -c phpunit.xml   #custom test command to make sure CLI args don't break the test
