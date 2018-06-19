@@ -10,13 +10,13 @@ env:
 
 # install vanilla CI before anything
 before_install:
+  - cd Industria
   - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
   - cp -r application/* CodeIgniter-$CI_VERSION/application/
   - cp -r system/* CodeIgniter-$CI_VERSION/system/
 
 # install this project on top of it
 install:
-  - cd Industria
   - cp -r CodeIgniter-$CI_VERSION/system/* system/
   - cp -r CodeIgniter-$CI_VERSION/application/* application/
   - mv CodeIgniter-$CI_VERSION/index.php index.php
