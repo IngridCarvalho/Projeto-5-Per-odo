@@ -1,21 +1,28 @@
-
-
 language: php
 php:
   - 5.4
+  - 5.5
   - 5.6
-  # - 7.0
-  # - 7.1.9
-  # - 7.1.10
+  - hhvm
 
-services:
-- mysql
+env:
+  - CI_VERSION=3.0.0
 
-before_script:
- - cd Industria
- - composer --dev --prefer-source install
+# install vanilla CI before anything
+before_install:
+  - wget https://github.com/bcit-ci/CodeIgniter/archive/$CI_VERSION.tar.gz -O - | tar xz
+  - cp -r application/* CodeIgniter-$CI_VERSION/application/
+  - cp -r system/* CodeIgniter-$CI_VERSION/system/
 
-script: phpunit
+# install this project on top of it
+install:
+  - cd Industria
+  - cp -r CodeIgniter-$CI_VERSION/system/* system/
+  - cp -r CodeIgniter-$CI_VERSION/application/* application/
+  - mv CodeIgniter-$CI_VERSION/index.php index.php
+  - rm -rf CodeIgniter-$CI_VERSION
 
-notifications:
-  email: false
+# run multiple test commands
+script:
+  - phpunit                  #default test command
+- phpunit -c phpunit.xml   #custom test command to make sure CLI args don't break the test

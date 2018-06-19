@@ -1,101 +1,25 @@
 <?php
 /*
  *---------------------------------------------------------------
- * APPLICATION ENVIRONMENT
+ * OVERRIDE FUNCTIONS
  *---------------------------------------------------------------
+ *
+ * This will "override" later functions meant to be defined
+ * in core\Common.php, so they throw errors instead of output strings
  */
-define('ENVIRONMENT', 'testing');
-/*
- *---------------------------------------------------------------
- * DS CONSTANT VERIFICATION
- *---------------------------------------------------------------
- *  Verifying if DS constant don't exists
- *  - If yes, define it!
- */
-if( !defined('DS')){
-    define('DS', DIRECTORY_SEPARATOR);
-}
-/*
- *---------------------------------------------------------------
- * CODEIGNITER PATHS DEFINITIONS
- *---------------------------------------------------------------
- */
-$system_path = '../system';
-$application_folder = '../application';
-$view_folder = '';
-/*
- * ---------------------------------------------------------------
- *  Resolve the system path for increased reliability
- * ---------------------------------------------------------------
- */
-// Set the current directory correctly for CLI requests
-if (defined('STDIN')) {
-    chdir(dirname(__FILE__));
-}
-if (realpath($system_path) !== FALSE) {
-    $system_path = realpath($system_path) . '/';
-}
-// ensure there's a trailing slash
-$system_path = rtrim($system_path, '/') . '/';
-// Is the system path correct?
-if (!is_dir($system_path)) {
-    exit("Your system folder path does not appear to be set correctly. Please open the following file and correct this: " . pathinfo(__FILE__, PATHINFO_BASENAME));
-}
-/*
- * -------------------------------------------------------------------
- *  Now that we know the path, set the main path constants
- * -------------------------------------------------------------------
- */
-// The name of THIS file
-define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
-// The PHP file extension
-// this global constant is deprecated.
-define('EXT', '.php');
-// Path to the system folder
-define('BASEPATH', str_replace("\\", "/", $system_path));
-// Path to the front controller (this file)
-define('FCPATH', str_replace(SELF, '', __FILE__));
-// Name of the "system folder"
-define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
-// The path to the "application" folder
-if (is_dir($application_folder)) {
-    define('APPPATH', $application_folder . '/');
-}
-else
+function show_error($message, $status_code = 500, $heading = 'An Error Was Encountered')
 {
-    if (!is_dir(BASEPATH . $application_folder . '/')) {
-        exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: " . SELF);
-    }
-    define('APPPATH', BASEPATH . $application_folder . '/');
+	throw new PHPUnit_Framework_Exception($message, $status_code);
 }
-// The path to the "views" folder
-if (is_dir($view_folder)) {
-    define ('VIEWPATH', $view_folder . '/');
-}
-else
+function show_404($page = '', $log_error = TRUE)
 {
-    if (!is_dir(APPPATH . 'views/')) {
-        exit("Your view folder path does not appear to be set correctly. Please open the following file and correct this: " . SELF);
-    }
-    define ('VIEWPATH', APPPATH . 'views/');
+	throw new PHPUnit_Framework_Exception($page, 404);
 }
-error_reporting(-1);
 /*
- * --------------------------------------------------------------------
- * REQUIRE COMPOSER FOLDERS
- * --------------------------------------------------------------------
+ *---------------------------------------------------------------
+ * BOOTSTRAP
+ *---------------------------------------------------------------
  *
+ * Bootstrap CodeIgniter from index.php as usual
  */
-if( is_dir(__DIR__ . DS . 'vendor' . DS) && file_exists(__DIR__ . DS . 'vendor' . DS . 'autoload.php'))
-    require_once __DIR__ . DS . 'vendor' . DS . 'autoload.php';
-/*
- * --------------------------------------------------------------------
- * LOAD THE BOOTSTRAP FILE
- * --------------------------------------------------------------------
- *
- * And away we go...
- *
- */
-require_once BASEPATH . 'core/CodeIgniter.php';
-/* End of file index.php */
-/* Location: ./index.php */
+require_once dirname(__FILE__) . '../../index.php';
