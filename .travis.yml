@@ -5,8 +5,8 @@ php:
   - 5.6
   - hhvm
 
-  services:
-  - mysql
+  # services:
+  # - mysql
 
   # test:
   #   adapter: mysqli
