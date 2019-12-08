@@ -9,4 +9,4 @@ Projeto web para controle de produção.
 
 # Descrição
 
-O sistema realizar o cadastro de produtos e inclusão de insumos de produtos acabados, realiza o cadastro da ordem de produção que faz o controle de estoque, dando baixa nos insumos e alimentando os itens finais. Gera relatório de produção.
+O sistema realiza o cadastro de produtos e inclusão de insumos nos produtos acabados, também é possível fazer o cadastro da ordem de produção que realiza o controle de estoque, dando baixa nos insumos e alimentando os itens finais. Gera relatórios de produção.
